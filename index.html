@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,16 +17,36 @@
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffeaa7,
+            #fab1a0
+        );
+
     color: #2d3436;
+
     padding: 20px;
 }
 
+/* =========================
+   GENERAL
+========================= */
+
 .pantalla {
     display: none;
+
     width: 100%;
     max-width: 700px;
+
     margin: 0 auto;
 }
 
@@ -34,10 +55,17 @@ body {
 }
 
 .contenedor {
-    background: rgba(255,255,255,0.97);
+    background:
+        rgba(255,255,255,.97);
+
     padding: 30px 20px;
+
     border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.2);
+
     text-align: center;
 }
 
@@ -52,229 +80,268 @@ h2 {
 
 .subtitulo {
     font-size: 1.1rem;
+
     opacity: .75;
+
     margin-bottom: 30px;
 }
 
-/* =====================
-   BOTONES Y MENÚ
-===================== */
+.instrucciones {
+    background: #f5f6fa;
+
+    padding: 16px;
+
+    border-radius: 15px;
+
+    margin: 15px 0 25px;
+
+    line-height: 1.55;
+}
+
+.samu-quiere {
+    font-size: .9rem;
+
+    letter-spacing: 2px;
+
+    font-weight: 900;
+
+    opacity: .7;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   MENÚ
+========================= */
 
 .menu-juegos {
     display: grid;
-    gap: 18px;
+
+    gap: 16px;
+
     margin-top: 25px;
 }
 
 .tarjeta-juego {
-    border: none;
     width: 100%;
-    padding: 25px 15px;
+
+    border: none;
+
+    padding: 22px 15px;
+
     border-radius: 20px;
+
     cursor: pointer;
-    font-size: 1.15rem;
-    font-weight: bold;
-    transition: .2s;
-    color: #2d3436;
+
+    font-size: 1.05rem;
+
+    font-weight: 900;
+
     background: #fff3cd;
-    box-shadow: 0 5px 10px rgba(0,0,0,.12);
+
+    color: #2d3436;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0,0,0,.12);
+
+    transition: .2s;
 }
 
 .tarjeta-juego:hover {
-    transform: scale(1.03);
+    transform: scale(1.025);
 }
 
 .icono-menu {
     display: block;
-    font-size: 50px;
-    margin-bottom: 8px;
+
+    font-size: 45px;
+
+    margin-bottom: 7px;
 }
 
 .boton-volver {
-    background: #636e72;
-    color: white;
     border: none;
-    padding: 11px 20px;
+
+    background: #636e72;
+
+    color: white;
+
+    padding: 11px 18px;
+
     border-radius: 12px;
+
     cursor: pointer;
+
     margin-bottom: 20px;
+
     font-weight: bold;
 }
 
 .boton-principal {
-    background: #ff7675;
-    color: white;
     border: none;
-    padding: 16px 30px;
+
+    background: #ff7675;
+
+    color: white;
+
+    padding: 16px 27px;
+
     border-radius: 14px;
+
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: bold;
-    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+
+    font-size: 1.05rem;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0,0,0,.15);
+
     transition: .2s;
 }
 
 .boton-principal:hover {
     background: #d63031;
+
     transform: scale(1.04);
 }
 
 .boton-principal:disabled {
-    opacity: .55;
+    opacity: .5;
+
     cursor: default;
+
     transform: none;
 }
 
-.instrucciones {
-    background: #f5f6fa;
-    padding: 15px;
-    border-radius: 15px;
-    margin: 15px 0 25px;
-    line-height: 1.5;
-}
 
-/* =====================
-   RULETA
-===================== */
+/* =================================
+   PERRO PITONISO
+================================= */
 
-.zona-juego {
-    position: relative;
-    height: 310px;
-}
+.templo-perro {
+    max-width: 440px;
 
-.ruleta-container {
-    position: absolute;
-    left: 50%;
-    top: 20px;
-    transform: translateX(-50%);
-}
+    margin: 30px auto;
 
-.flecha {
-    position: absolute;
-    z-index: 10;
-    left: 50%;
-    top: -20px;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
+    padding: 25px;
 
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-top: 35px solid #2d3436;
-}
+    border-radius: 25px;
 
-.ruleta {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 9px solid #2d3436;
-
-    background: conic-gradient(
-        #ff7675 0deg 45deg,
-        #74b9ff 45deg 90deg,
-        #ffeaa7 90deg 135deg,
-        #55efc4 135deg 180deg,
-        #a29bfe 180deg 225deg,
-        #fd79a8 225deg 270deg,
-        #fab1a0 270deg 315deg,
-        #81ecec 315deg 360deg
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #2d3436,
+            #111
+        );
 
     box-shadow:
-        0 10px 20px rgba(0,0,0,.25),
-        inset 0 0 0 5px white;
-
-    position: relative;
+        0 15px 25px
+        rgba(0,0,0,.25);
 }
 
-.centro-ruleta {
-    position: absolute;
-    width: 62px;
-    height: 62px;
-    background: white;
-    border: 6px solid #2d3436;
+.bola-cristal {
+    width: 230px;
+    height: 230px;
+
+    margin: auto;
+
     border-radius: 50%;
 
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(
+            circle at 40% 30%,
+            #ffffff,
+            #a29bfe 35%,
+            #6c5ce7 70%,
+            #2d3436
+        );
+
+    border:
+        8px solid #ffeaa7;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    font-size: 30px;
+    font-size: 95px;
+
+    box-shadow:
+        0 0 30px
+        rgba(162,155,254,.8);
 }
 
-.perro {
-    position: absolute;
-    left: calc(50% - 200px);
-    bottom: 5px;
-    font-size: 80px;
-    transform-origin: bottom center;
+.perro-pensando {
+    animation:
+        pensarPerro
+        .5s
+        infinite alternate;
 }
 
-.cerveza {
-    position: absolute;
-    left: calc(50% - 140px);
-    bottom: 5px;
-    font-size: 42px;
-    transform: rotate(-20deg);
+@keyframes pensarPerro {
+
+    from {
+        transform:
+            rotate(-7deg)
+            scale(.96);
+    }
+
+    to {
+        transform:
+            rotate(7deg)
+            scale(1.04);
+    }
 }
 
-.cuerda {
-    position: absolute;
-    left: calc(50% - 132px);
-    bottom: 82px;
-    width: 115px;
-    height: 5px;
-    background: #795548;
-    border-radius: 5px;
-    transform: rotate(-20deg);
-}
+.mensaje-pitoniso {
+    background: #fff;
 
-.girando {
-    animation: girarRuleta 2.6s cubic-bezier(.15,.65,.15,1);
-}
+    color: #2d3436;
 
-@keyframes girarRuleta {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(1800deg); }
-}
+    min-height: 145px;
 
-.perro-tirando {
-    animation: perroBorracho .4s ease-in-out infinite alternate;
-}
+    margin-top: 25px;
 
-@keyframes perroBorracho {
-    0% { transform: rotate(-12deg) translateX(-5px); }
-    100% { transform: rotate(13deg) translateX(8px); }
-}
+    padding: 20px;
 
-#frase-destino {
-    margin: 15px 0 22px;
-    min-height: 100px;
-    padding: 18px;
-    background: #f8f9fa;
-    border-radius: 15px;
+    border-radius: 16px;
 
     display: flex;
-    align-items: center;
+
+    flex-direction: column;
+
     justify-content: center;
 
-    font-size: 1.1rem;
-    line-height: 1.4;
+    line-height: 1.5;
+
+    font-size: 1.08rem;
+
+    font-weight: 600;
 }
 
-/* =====================
+.pitoniso-enfadado {
+    background: #d63031;
+
+    color: white;
+}
+
+
+/* =================================
    DADOS
-===================== */
+================================= */
 
 .zona-dados {
     display: flex;
+
     justify-content: center;
-    align-items: center;
+
     gap: 25px;
+
     margin: 30px 0;
 }
 
@@ -283,55 +350,92 @@ h2 {
     height: 125px;
 
     background: white;
-    border: 5px solid #2d3436;
+
+    border:
+        5px solid
+        #2d3436;
+
     border-radius: 22px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     font-size: 80px;
 
-    box-shadow: 0 8px 15px rgba(0,0,0,.15);
+    box-shadow:
+        0 8px 15px
+        rgba(0,0,0,.15);
 }
 
 .dado-rodando {
-    animation: rodarDado .15s infinite;
+    animation:
+        rodarDado
+        .15s
+        infinite;
 }
 
 @keyframes rodarDado {
 
     0% {
-        transform: rotate(-10deg) scale(.9);
+        transform:
+            rotate(-10deg)
+            scale(.9);
     }
 
     50% {
-        transform: rotate(15deg) scale(1.1);
+        transform:
+            rotate(15deg)
+            scale(1.1);
     }
 
     100% {
-        transform: rotate(-5deg) scale(.95);
+        transform:
+            rotate(-5deg)
+            scale(.95);
     }
 }
 
-#resultado-dados {
+.resultado-juego {
     margin: 25px 0;
+
     min-height: 90px;
-    font-size: 1.2rem;
+
     padding: 18px;
+
     background: #f5f6fa;
+
     border-radius: 15px;
+
+    font-size: 1.15rem;
+
+    line-height: 1.5;
 }
 
-/* =====================
+
+/* =================================
    CRONO
-===================== */
+================================= */
 
 .crono {
-    font-family: "Courier New", monospace;
-    font-size: clamp(2.5rem, 11vw, 5rem);
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:
+        clamp(
+            2.5rem,
+            11vw,
+            5rem
+        );
+
     font-weight: bold;
-    margin: 35px 0 10px;
+
+    margin:
+        35px 0 10px;
+
     letter-spacing: -3px;
 }
 
@@ -345,59 +449,62 @@ h2 {
 
 .botones-crono {
     display: flex;
+
     justify-content: center;
+
     flex-wrap: wrap;
+
     gap: 12px;
+
     margin-top: 25px;
 }
 
-.btn-iniciar {
+.btn-verde {
     background: #00b894;
 }
 
-.btn-parar {
+.btn-rojo {
     background: #d63031;
 }
 
-.btn-reset {
+.btn-gris {
     background: #636e72;
 }
 
-.resultado-crono {
-    margin-top: 25px;
-    padding: 15px;
-    min-height: 60px;
-    border-radius: 15px;
-    background: #f5f6fa;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
 
-/* =====================
+/* =================================
    BARAJA
-===================== */
-
-.mesa-cartas {
-    margin: 25px 0;
-}
+================================= */
 
 .carta {
     width: 150px;
     height: 210px;
-    background: white;
-    margin: 20px auto;
 
-    border: 4px solid #2d3436;
+    margin:
+        25px auto;
+
+    background: white;
+
+    border:
+        4px solid
+        #2d3436;
+
     border-radius: 15px;
 
-    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+    box-shadow:
+        0 8px 18px
+        rgba(0,0,0,.2);
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
 
-    font-size: 3.5rem;
+    font-size: 3.4rem;
+
     font-weight: bold;
 }
 
@@ -411,65 +518,415 @@ h2 {
 
 .palo-carta {
     font-size: 4rem;
-    line-height: 1;
+}
+
+.tragos {
+    font-size: 1.35rem;
+
+    font-weight: 900;
+
+    margin: 20px 0;
 }
 
 .botones-baraja {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap: 10px;
+
     margin: 20px 0;
 }
 
 .boton-carta {
     border: none;
+
+    padding: 15px 7px;
+
     border-radius: 13px;
-    padding: 15px 8px;
-    font-weight: bold;
-    font-size: 1rem;
+
     color: white;
+
     cursor: pointer;
+
+    font-weight: 900;
 }
 
-.mayor {
-    background: #00b894;
-}
-
-.igual {
-    background: #6c5ce7;
+.boton-carta:disabled {
+    opacity: .45;
 }
 
 .menor {
     background: #0984e3;
 }
 
-.estado-baraja {
-    background: #f5f6fa;
+.igual {
+    background: #6c5ce7;
+}
+
+.mayor {
+    background: #00b894;
+}
+
+
+/* =================================
+   RULETA ETÍLICA
+================================= */
+
+.ruleta-etilica-wrap {
+    position: relative;
+
+    width: 300px;
+    height: 300px;
+
+    margin:
+        35px auto;
+}
+
+.ruleta-etilica {
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    border:
+        9px solid
+        #2d3436;
+
+    background:
+        repeating-conic-gradient(
+            #d63031 0deg 22.5deg,
+            #fdcb6e 22.5deg 45deg,
+            #6c5ce7 45deg 67.5deg,
+            #00b894 67.5deg 90deg
+        );
+
+    box-shadow:
+        0 12px 24px
+        rgba(0,0,0,.3),
+        inset 0 0 0 6px white;
+
+    position: relative;
+}
+
+.centro-etilica {
+    width: 82px;
+    height: 82px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background: #2d3436;
+
+    border:
+        6px solid white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 42px;
+}
+
+.flecha-etilica {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: -17px;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        20px solid transparent;
+
+    border-right:
+        20px solid transparent;
+
+    border-top:
+        43px solid #2d3436;
+}
+
+.etilica-girando {
+    animation:
+        giroEtilico
+        3.2s
+        cubic-bezier(.12,.7,.15,1);
+}
+
+@keyframes giroEtilico {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(2160deg);
+    }
+}
+
+.resultado-etilica {
+    min-height: 150px;
+
+    padding: 20px;
+
+    margin:
+        20px 0;
+
     border-radius: 15px;
-    padding: 17px;
-    min-height: 85px;
-    margin-top: 20px;
+
+    background: #2d3436;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
     line-height: 1.5;
 }
 
-.tragos {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 15px 0;
+
+/* =================================
+   TRAGAPERRAS
+================================= */
+
+.slot-machine {
+    max-width: 500px;
+
+    margin:
+        30px auto;
+
+    padding: 25px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d63031,
+            #8e1b1b
+        );
+
+    border:
+        7px solid
+        #2d3436;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 25px
+        rgba(0,0,0,.3);
 }
 
-/* =====================
-   MÓVIL
-===================== */
+.slot-titulo {
+    color: #ffeaa7;
 
-@media (max-width: 520px) {
+    font-size: 1.35rem;
+
+    font-weight: 900;
+
+    margin-bottom: 20px;
+}
+
+.rodillos {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 18px 8px;
+
+    background: #2d3436;
+
+    border-radius: 16px;
+}
+
+.rodillo {
+    width: 105px;
+    height: 125px;
+
+    background: white;
+
+    border:
+        5px solid
+        #ffeaa7;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 65px;
+
+    overflow: hidden;
+}
+
+.rodillo-girando {
+    animation:
+        rodilloGira
+        .12s
+        infinite;
+}
+
+@keyframes rodilloGira {
+
+    from {
+        transform:
+            translateY(-4px)
+            rotate(-2deg);
+    }
+
+    to {
+        transform:
+            translateY(4px)
+            rotate(2deg);
+    }
+}
+
+.panel-avances {
+    background: #ffeaa7;
+
+    color: #2d3436;
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    font-weight: 900;
+}
+
+.botones-avance {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.boton-avance {
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 10px 5px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    background: #6c5ce7;
+
+    color: white;
+}
+
+.boton-avance:disabled {
+    opacity: .4;
+}
+
+.slot-controles {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.slot-resultado {
+    background: white;
+
+    margin-top: 20px;
+
+    min-height: 125px;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    line-height: 1.5;
+}
+
+.jackpot {
+    animation:
+        jackpotFlash
+        .4s
+        infinite alternate;
+}
+
+@keyframes jackpotFlash {
+
+    from {
+        transform:
+            scale(1);
+    }
+
+    to {
+        transform:
+            scale(1.05);
+    }
+}
+
+
+/* =================================
+   MÓVIL
+================================= */
+
+@media(max-width:520px) {
 
     body {
         padding: 10px;
     }
 
     .contenedor {
-        padding: 25px 12px;
+        padding:
+            24px 12px;
+    }
+
+    .bola-cristal {
+        width: 190px;
+        height: 190px;
+
+        font-size: 78px;
     }
 
     .zona-dados {
@@ -479,54 +936,44 @@ h2 {
     .dado {
         width: 105px;
         height: 105px;
+
         font-size: 68px;
-    }
-
-    .ruleta {
-        width: 185px;
-        height: 185px;
-    }
-
-    .zona-juego {
-        height: 270px;
-    }
-
-    .perro {
-        left: calc(50% - 165px);
-        font-size: 65px;
-    }
-
-    .cerveza {
-        left: calc(50% - 115px);
-        font-size: 35px;
-    }
-
-    .cuerda {
-        left: calc(50% - 108px);
-        width: 90px;
-    }
-
-    .carta {
-        width: 130px;
-        height: 185px;
     }
 
     .botones-baraja {
         grid-template-columns: 1fr;
     }
+
+    .ruleta-etilica-wrap,
+    .ruleta-etilica {
+        width: 250px;
+        height: 250px;
+    }
+
+    .rodillo {
+        width: 82px;
+        height: 100px;
+
+        font-size: 50px;
+    }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<!-- ====================================
-     MENÚ PRINCIPAL
-==================================== -->
 
-<section id="inicio" class="pantalla activa">
+<!-- ==================================================
+     MENÚ
+================================================== -->
+
+<section
+id="inicio"
+class="pantalla activa">
 
 <div class="contenedor">
 
@@ -534,28 +981,33 @@ h2 {
 🍻🎂🍻
 </div>
 
-<h1>¡BIENVENIDO AL CUMPLESAMU!</h1>
+<h1>
+¡BIENVENIDO AL CUMPLESAMU!
+</h1>
 
 <div class="subtitulo">
-Elige sabiamente. O no. Probablemente ya sea demasiado tarde.
+Hay decisiones que es mejor no pensar demasiado.
 </div>
 
 
 <div class="menu-juegos">
 
-<button class="tarjeta-juego"
-onclick="abrirJuego('ruleta')">
+
+<button
+class="tarjeta-juego"
+onclick="abrirJuego('perro')">
 
 <span class="icono-menu">
-🐶🎰
+🔮🐶
 </span>
 
-LA RULETA DEL PERRO BORRACHO
+EL DESTINO DEL PERRO BORRACHO
 
 </button>
 
 
-<button class="tarjeta-juego"
+<button
+class="tarjeta-juego"
 onclick="abrirJuego('dados')">
 
 <span class="icono-menu">
@@ -567,7 +1019,8 @@ LOS DADOS CALIENTES
 </button>
 
 
-<button class="tarjeta-juego"
+<button
+class="tarjeta-juego"
 onclick="abrirJuego('crono')">
 
 <span class="icono-menu">
@@ -579,7 +1032,8 @@ EL CRONO CERVECERO
 </button>
 
 
-<button class="tarjeta-juego"
+<button
+class="tarjeta-juego"
 onclick="abrirJuego('baraja')">
 
 <span class="icono-menu">
@@ -590,6 +1044,33 @@ MAYOR, MENOR O IGUAL
 
 </button>
 
+
+<button
+class="tarjeta-juego"
+onclick="abrirJuego('etilica')">
+
+<span class="icono-menu">
+☠️🎡
+</span>
+
+LA RULETA ETÍLICA MORTAL
+
+</button>
+
+
+<button
+class="tarjeta-juego"
+onclick="abrirJuego('tragaperras')">
+
+<span class="icono-menu">
+🎰🍒
+</span>
+
+LA TRAGAPERRAS DEL CUMPLESAMU
+
+</button>
+
+
 </div>
 
 </div>
@@ -597,15 +1078,19 @@ MAYOR, MENOR O IGUAL
 </section>
 
 
-<!-- ====================================
-     RULETA
-==================================== -->
 
-<section id="ruleta" class="pantalla">
+<!-- ==================================================
+     PERRO PITONISO
+================================================== -->
+
+<section
+id="perro"
+class="pantalla">
 
 <div class="contenedor">
 
-<button class="boton-volver"
+<button
+class="boton-volver"
 onclick="volverMenu()">
 
 ← Volver al CumpleSamu
@@ -614,72 +1099,89 @@ onclick="volverMenu()">
 
 
 <h2>
-🐶 LA RULETA DEL PERRO BORRACHO 🍺
+🔮🐶 EL DESTINO DEL PERRO BORRACHO 🐶🔮
 </h2>
 
 
-<div class="zona-juego">
+<div class="instrucciones">
 
-<div id="perro" class="perro">
+El perro borracho todo lo sabe.
+
+<br>
+
+Bueno... casi todo.
+
+<br><br>
+
+Hazle una consulta.
+
+<br>
+
+Pensará detenidamente sobre tu destino.
+
+<br><br>
+
+<strong>
+A veces se enfada y se niega a responder.
+</strong>
+
+</div>
+
+
+<div class="templo-perro">
+
+<div
+id="bolaPerro"
+class="bola-cristal">
+
 🐶
-</div>
-
-<div class="cerveza">
-🍺
-</div>
-
-<div class="cuerda"></div>
-
-
-<div class="ruleta-container">
-
-<div class="flecha"></div>
-
-<div id="ruletaDisco"
-class="ruleta">
-
-<div class="centro-ruleta">
-🍻
-</div>
-
-</div>
-
-</div>
 
 </div>
 
 
-<div id="frase-destino">
+<div
+id="mensajePerro"
+class="mensaje-pitoniso">
 
-El perro está preparado... más o menos. 🍺
+<div class="samu-quiere">
+SAMU QUIERE QUE...
+</div>
+
+consultes al perro pitoniso.
+
+</div>
 
 </div>
 
 
 <button
-id="boton-ruleta"
+id="botonPerro"
 class="boton-principal"
-onclick="girarRuleta()">
+onclick="consultarPerro()">
 
-🎰 ¡TIRA DE LA RULETA!
+🔮 CONSULTAR MI DESTINO
 
 </button>
+
 
 </div>
 
 </section>
 
 
-<!-- ====================================
-     DADOS
-==================================== -->
 
-<section id="dados" class="pantalla">
+<!-- ==================================================
+     DADOS
+================================================== -->
+
+<section
+id="dados"
+class="pantalla">
 
 <div class="contenedor">
 
-
-<button class="boton-volver"
+<button
+class="boton-volver"
 onclick="volverMenu()">
 
 ← Volver al CumpleSamu
@@ -694,10 +1196,6 @@ onclick="volverMenu()">
 
 <div class="instrucciones">
 
-<strong>¿Cómo se juega?</strong>
-
-<br><br>
-
 Elige a un contrincante.
 
 <br>
@@ -706,49 +1204,52 @@ Cada uno tira los dados desde su móvil.
 
 <br>
 
-Comparad la suma de los dos dados.
+Comparad la suma.
 
 <br><br>
 
 <strong>
-El que saque MENOR puntuación, BEBE. 🍺
+La puntuación más baja bebe.
 </strong>
 
 <br><br>
 
-⚠️ <strong>
-REGLA DE LOS DOBLES:
-</strong>
+⚠️ Si salen
 
-<br>
+<strong>DOBLES</strong>,
 
-Si los dos dados muestran el mismo número,
-
-<strong>
-BEBES automáticamente,
-</strong>
-
-independientemente de la puntuación.
+bebes independientemente del resultado.
 
 </div>
 
 
 <div class="zona-dados">
 
-<div id="dado1" class="dado">
+<div
+id="dado1"
+class="dado">
+
 ⚀
+
 </div>
 
-<div id="dado2" class="dado">
+
+<div
+id="dado2"
+class="dado">
+
 ⚀
-</div>
 
 </div>
 
+</div>
 
-<div id="resultado-dados">
 
-🎲 Tu puntuación aparecerá aquí
+<div
+id="resultado-dados"
+class="resultado-juego">
+
+🎲 Tu puntuación aparecerá aquí.
 
 </div>
 
@@ -758,7 +1259,7 @@ id="boton-dados"
 class="boton-principal"
 onclick="tirarDados()">
 
-🎲 ¡LANZAR DADOS!
+🎲 LANZAR DADOS
 
 </button>
 
@@ -767,15 +1268,19 @@ onclick="tirarDados()">
 </section>
 
 
-<!-- ====================================
-     CRONO
-==================================== -->
 
-<section id="crono" class="pantalla">
+<!-- ==================================================
+     CRONO
+================================================== -->
+
+<section
+id="crono"
+class="pantalla">
 
 <div class="contenedor">
 
-<button class="boton-volver"
+<button
+class="boton-volver"
 onclick="volverMenu()">
 
 ← Volver al CumpleSamu
@@ -790,33 +1295,31 @@ onclick="volverMenu()">
 
 <div class="instrucciones">
 
-<strong>¿Cómo se juega?</strong>
-
-<br><br>
-
 Elige a un contrincante.
 
 <br>
 
-El cronómetro empieza en
+El contador empieza en
+
 <strong>5 segundos.</strong>
 
 <br>
 
 Intenta pararlo lo más cerca posible de
 
-<strong>0.00000.</strong>
+<strong>0.00000</strong>
+
+sin pasarte.
 
 <br><br>
 
-<strong>
-El que más cerca se quede de 0 SIN PASARSE gana.
-</strong>
+El que quede más cerca gana.
 
 </div>
 
 
-<div id="displayCrono"
+<div
+id="displayCrono"
 class="crono">
 
 5.00000
@@ -824,8 +1327,9 @@ class="crono">
 </div>
 
 
-<div id="resultado-crono"
-class="resultado-crono">
+<div
+id="resultado-crono"
+class="resultado-juego">
 
 Pulsa iniciar cuando estés preparado. 👀
 
@@ -834,9 +1338,10 @@ Pulsa iniciar cuando estés preparado. 👀
 
 <div class="botones-crono">
 
+
 <button
 id="btn-iniciar"
-class="boton-principal btn-iniciar"
+class="boton-principal btn-verde"
 onclick="iniciarCrono()">
 
 ▶️ INICIAR
@@ -846,7 +1351,7 @@ onclick="iniciarCrono()">
 
 <button
 id="btn-parar"
-class="boton-principal btn-parar"
+class="boton-principal btn-rojo"
 onclick="pararCrono()"
 disabled>
 
@@ -856,12 +1361,13 @@ disabled>
 
 
 <button
-class="boton-principal btn-reset"
+class="boton-principal btn-gris"
 onclick="resetCrono()">
 
 ↻ REINICIAR
 
 </button>
+
 
 </div>
 
@@ -870,16 +1376,19 @@ onclick="resetCrono()">
 </section>
 
 
-<!-- ====================================
-     BARAJA
-==================================== -->
 
-<section id="baraja" class="pantalla">
+<!-- ==================================================
+     BARAJA
+================================================== -->
+
+<section
+id="baraja"
+class="pantalla">
 
 <div class="contenedor">
 
-
-<button class="boton-volver"
+<button
+class="boton-volver"
 onclick="volverMenu()">
 
 ← Volver al CumpleSamu
@@ -888,43 +1397,31 @@ onclick="volverMenu()">
 
 
 <h2>
-🃏🍻 MAYOR, MENOR O IGUAL 🍻🃏
+🃏 MAYOR, MENOR O IGUAL 🃏
 </h2>
 
 
 <div class="instrucciones">
 
-<strong>¿Cómo se juega?</strong>
-
-<br><br>
-
 Mira la carta.
 
 <br>
 
-Decide si la siguiente será
-
-<strong>MAYOR, MENOR o IGUAL.</strong>
-
-<br><br>
-
-Cada vez que aciertas,
-
-<strong>acumulas 1 trago.</strong>
-
-<br>
-
-Puedes seguir arriesgando.
-
-<br><br>
-
-Si fallas...
-
-<br>
+Adivina si la siguiente será
 
 <strong>
-🍺 TE BEBES TODOS LOS TRAGOS ACUMULADOS.
+MAYOR, MENOR o IGUAL.
 </strong>
+
+<br><br>
+
+Cada acierto acumula
+
+<strong>1 trago.</strong>
+
+<br>
+
+Si fallas, bebes todos los acumulados.
 
 <br><br>
 
@@ -936,6 +1433,7 @@ El As es la carta más alta.
 <div class="tragos">
 
 🍺 Tragos acumulados:
+
 <span id="tragosAcumulados">
 0
 </span>
@@ -943,19 +1441,19 @@ El As es la carta más alta.
 </div>
 
 
-<div class="mesa-cartas">
-
-<div id="cartaActual"
+<div
+id="cartaActual"
 class="carta negra">
 
 <div id="valorCarta">
 ?
 </div>
 
-<div id="paloCarta"
+<div
+id="paloCarta"
 class="palo-carta">
+
 🂠
-</div>
 
 </div>
 
@@ -963,6 +1461,7 @@ class="palo-carta">
 
 
 <div class="botones-baraja">
+
 
 <button
 id="btn-menor"
@@ -996,18 +1495,17 @@ disabled>
 
 </button>
 
+
 </div>
 
 
-<div id="estado-baraja"
-class="estado-baraja">
+<div
+id="estado-baraja"
+class="resultado-juego">
 
 Pulsa empezar para sacar la primera carta.
 
 </div>
-
-
-<br>
 
 
 <button
@@ -1019,30 +1517,318 @@ onclick="iniciarBaraja()">
 
 </button>
 
+
 </div>
 
 </section>
 
 
+
+<!-- ==================================================
+     RULETA ETÍLICA
+================================================== -->
+
+<section
+id="etilica"
+class="pantalla">
+
+<div class="contenedor">
+
+<button
+class="boton-volver"
+onclick="volverMenu()">
+
+← Volver al CumpleSamu
+
+</button>
+
+
+<h2>
+☠️🍺 LA RULETA ETÍLICA MORTAL 🍺☠️
+</h2>
+
+
+<div class="instrucciones">
+
+Gira la ruleta.
+
+<br>
+
+Samu decidirá tu destino.
+
+</div>
+
+
+<div class="ruleta-etilica-wrap">
+
+<div class="flecha-etilica"></div>
+
+
+<div
+id="discoEtilico"
+class="ruleta-etilica">
+
+<div class="centro-etilica">
+☠️
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="resultado-etilico"
+class="resultado-etilica">
+
+<div>
+
+<div style="font-size:35px;">
+☠️
+</div>
+
+<br>
+
+La ruleta está esperando una víctima.
+
+</div>
+
+</div>
+
+
+<button
+id="boton-etilico"
+class="boton-principal"
+onclick="girarEtilica()">
+
+☠️ GIRAR LA RULETA
+
+</button>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================================
+     TRAGAPERRAS
+================================================== -->
+
+<section
+id="tragaperras"
+class="pantalla">
+
+<div class="contenedor">
+
+<button
+class="boton-volver"
+onclick="volverMenu()">
+
+← Volver al CumpleSamu
+
+</button>
+
+
+<h2>
+🎰🍒 LA TRAGAPERRAS DEL CUMPLESAMU 🍒🎰
+</h2>
+
+
+<div class="instrucciones">
+
+Haz girar los rodillos.
+
+<br>
+
+Puedes conseguir
+
+<strong>AVANCES</strong>
+
+y utilizarlos para mover manualmente un rodillo antes de cobrar.
+
+<br><br>
+
+🍒 Pareja = 1 trago
+
+<br>
+
+🍇🍇🍇 Triple = 2 tragos
+
+<br>
+
+🔔🔔🔔 = 3 tragos
+
+<br>
+
+7️⃣7️⃣7️⃣ =
+
+<strong>JACKPOT: 3 tragos</strong>
+
+</div>
+
+
+<div class="slot-machine">
+
+
+<div class="slot-titulo">
+★ CUMPLESAMU CASINO ★
+</div>
+
+
+<div class="rodillos">
+
+<div
+id="reel1"
+class="rodillo">
+
+🍒
+
+</div>
+
+<div
+id="reel2"
+class="rodillo">
+
+🍋
+
+</div>
+
+<div
+id="reel3"
+class="rodillo">
+
+🍇
+
+</div>
+
+</div>
+
+
+<div class="panel-avances">
+
+⚡ AVANCES DISPONIBLES:
+
+<span id="numeroAvances">
+0
+</span>
+
+
+<div class="botones-avance">
+
+
+<button
+id="avance1"
+class="boton-avance"
+onclick="usarAvance(0)"
+disabled>
+
+⬆️ RODILLO 1
+
+</button>
+
+
+<button
+id="avance2"
+class="boton-avance"
+onclick="usarAvance(1)"
+disabled>
+
+⬆️ RODILLO 2
+
+</button>
+
+
+<button
+id="avance3"
+class="boton-avance"
+onclick="usarAvance(2)"
+disabled>
+
+⬆️ RODILLO 3
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<div
+id="slotResultado"
+class="slot-resultado">
+
+🎰 Introduce metafóricamente una moneda y prueba suerte.
+
+</div>
+
+
+<div class="slot-controles">
+
+
+<button
+id="botonSpin"
+class="boton-principal"
+onclick="girarSlots()">
+
+🎰 GIRAR
+
+</button>
+
+
+<button
+id="botonCobrar"
+class="boton-principal btn-verde"
+onclick="cobrarSlot()"
+disabled>
+
+🍺 COBRAR
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
 <script>
 
-/* ========================================
+
+/* =================================================
    NAVEGACIÓN
-======================================== */
+================================================= */
 
 function abrirJuego(id) {
 
     document
         .querySelectorAll(".pantalla")
         .forEach(
-            p => p.classList.remove("activa")
+            pantalla =>
+                pantalla.classList.remove(
+                    "activa"
+                )
         );
+
 
     document
         .getElementById(id)
-        .classList.add("activa");
+        .classList.add(
+            "activa"
+        );
 
-    window.scrollTo(0,0);
+
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
@@ -1052,108 +1838,115 @@ function volverMenu() {
     document
         .querySelectorAll(".pantalla")
         .forEach(
-            p => p.classList.remove("activa")
+            pantalla =>
+                pantalla.classList.remove(
+                    "activa"
+                )
         );
+
 
     document
         .getElementById("inicio")
-        .classList.add("activa");
+        .classList.add(
+            "activa"
+        );
+
 
     resetCrono();
 
-    window.scrollTo(0,0);
+
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
 
-/* ========================================
-   RULETA
-======================================== */
+
+/* =================================================
+   PERRO PITONISO
+================================================= */
 
 const frases = [
 
 "Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
 
-"Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
-
 "No dejes para mañana lo que puedas hacer... pasado mañana.",
 
-"Sonríe, te están grabando (es broma, o tal vez no).",
+"Sonrías. Te están grabando. Es broma. O tal vez no.",
 
-"La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
+"dejes el móvil cinco minutos. Pero termina de leer esto primero.",
 
-"Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.",
+"le pidas una caña a Samu.",
 
-"Si lees esto, pídele una caña a Samu.",
+"te tomes un chupito y le pidas a Toni que te invite.",
 
-"¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.",
+"busques a Compadre y le pidas un chupito.",
 
-"Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.",
+"te mojes por dentro. Pídele un chupito a Will.",
 
-"¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.",
+"averigües cuántos chupitos le entran en la boca a Matilla. Experimento empírico.",
 
-"¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.",
+"recuerdes que un chupito probablemente sea más barato que una hora de consulta con Psicosilvia.",
 
-"Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.",
+"busques al letrado de la sala y le pagues un chupito a Sergio.",
 
-"¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).",
+"te bebas la cerveza de un trago a la salud de Pelli.",
 
-"Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).",
+"aproveches que esta cerveza es más artesana que Musart y bebas.",
 
-"Esta cerveza es más artesana que Musart, aprovecha y bebe.",
+"animes a Elde porque esto todavía no parece una rave. Invítale a un chupito.",
 
-"Elde está triste porque esto no parece una rave, invítale a un chupito.",
+"recuerdes que a falta de Prieto Picudo, bueno es el Calimotxo. Busca a Rubén.",
 
-"A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.",
+"te tomes una cerveza con Alvarolo antes de que saque el dedo inquisidor.",
 
-"Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.",
+"busques a Lucitec. O hace un baile o te invita a un chupito.",
 
-"Busca a Lucitec, o te hace un baile, o te invita a un chupito.",
+"busques a Patri y le pidas la caña que te debe.",
 
-"¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!",
+"invites a Laura a algo antes de las 12. Después puede convertirse en Gremlin.",
 
-"Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.",
+"localices a Cristina, bailes un perreo con ella y le pidas un chupito.",
 
-"Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.",
+"busques a Lolo y le pidas algo de beber.",
 
-"Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.",
+"preguntes a Álvaro si eso es una avutarda. Sea cual sea la respuesta, toca beber.",
 
-"¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.",
+"compruebes si Mario tiene cara seria. Si la tiene, pídele algo.",
 
-"Si Mario tiene cara seria, le toca pagarte lo que le pidas.",
+"cuides de Noemí, que ha venido desde la lejanísima Palencia.",
 
-"Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).",
+"te bebas una caña con Orki antes de que empiece a hablar de química.",
 
-"¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!",
+"le busques a Julia una terapia de choque en forma de shot.",
 
-"Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!",
+"preguntes a Silvet si eso es un tigre o un gatito.",
 
-"¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.",
+"te acerques a Sara y bebas algo.",
 
-"Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.",
+"bebas si estás a menos de un metro de un Álvaro.",
 
-"Si te encuentras a menos de 1 metro de un Álvaro, bebes.",
+"vigiles el vaso de Yolanda. Vacío o lleno, aquí hay trabajo.",
 
-"Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.",
+"busques a David. Si no le conoces, preséntate. Después bebéis.",
 
-"Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.",
+"consultes a Mer por ese dolor de cabeza y le pagues la consulta en forma de chupito.",
 
-"¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.",
+"hidrates urgentemente a Andrés.",
 
-"Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!",
+"busques a Isa. Si está a menos de un metro, bebéis los dos.",
 
-"La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!",
+"rescates a Miriam de tanta Coca-Cola y os toméis algo.",
 
-"Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.",
-
-"Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!"
+"busques a Andrés maquinista. Si no ha llegado, bebe a su salud. Si ha llegado, que te pague uno."
 
 ];
 
 
-/* ANTI REPETICIÓN */
-
 let frasesVistas = [];
+
 
 try {
 
@@ -1164,7 +1957,9 @@ try {
             )
         ) || [];
 
-} catch(error) {
+}
+
+catch(error) {
 
     frasesVistas = [];
 
@@ -1176,8 +1971,10 @@ function elegirFraseNueva() {
     frasesVistas =
         frasesVistas.filter(
             indice =>
-                Number.isInteger(indice) &&
-                indice >= 0 &&
+                Number.isInteger(indice)
+                &&
+                indice >= 0
+                &&
                 indice < frases.length
         );
 
@@ -1195,12 +1992,14 @@ function elegirFraseNueva() {
     const disponibles =
         frases
         .map(
-            (frase, indice) =>
+            (frase,indice) =>
                 indice
         )
         .filter(
             indice =>
-                !frasesVistas.includes(indice)
+                !frasesVistas.includes(
+                    indice
+                )
         );
 
 
@@ -1213,17 +2012,23 @@ function elegirFraseNueva() {
         ];
 
 
-    frasesVistas.push(indice);
+    frasesVistas.push(
+        indice
+    );
 
 
     try {
 
         localStorage.setItem(
             "cumplesamu_frases_vistas",
-            JSON.stringify(frasesVistas)
+            JSON.stringify(
+                frasesVistas
+            )
         );
 
-    } catch(error) {}
+    }
+
+    catch(error) {}
 
 
     return indice;
@@ -1231,87 +2036,152 @@ function elegirFraseNueva() {
 }
 
 
-function girarRuleta() {
+function consultarPerro() {
 
-    const ruleta =
+    const bola =
         document.getElementById(
-            "ruletaDisco"
+            "bolaPerro"
         );
 
-    const perro =
+    const mensaje =
         document.getElementById(
-            "perro"
-        );
-
-    const frase =
-        document.getElementById(
-            "frase-destino"
+            "mensajePerro"
         );
 
     const boton =
         document.getElementById(
-            "boton-ruleta"
+            "botonPerro"
         );
 
 
-    boton.disabled = true;
+    boton.disabled =
+        true;
 
 
-    frase.innerText =
-        "El perro está decidiendo tu destino... 🐶🍺";
-
-
-    ruleta.classList.remove(
-        "girando"
-    );
-
-    void ruleta.offsetWidth;
-
-    ruleta.classList.add(
-        "girando"
+    mensaje.classList.remove(
+        "pitoniso-enfadado"
     );
 
 
-    perro.classList.add(
-        "perro-tirando"
+    bola.classList.add(
+        "perro-pensando"
     );
 
 
-    const indice =
-        elegirFraseNueva();
+    bola.innerText =
+        "🐶💭";
+
+
+    mensaje.innerHTML =
+        `
+        <div class="samu-quiere">
+        EL PERRO ESTÁ PENSANDO...
+        </div>
+
+        Consultando los astros,
+        el alcohol y otras fuentes
+        de dudosa fiabilidad...
+        `;
 
 
     setTimeout(() => {
 
-        perro.classList.remove(
-            "perro-tirando"
+        /*
+        18% de posibilidades
+        de que el perro se enfade.
+        */
+
+        const enfadado =
+            Math.random() < .18;
+
+
+        bola.classList.remove(
+            "perro-pensando"
         );
 
-        frase.innerText =
-            "🎉 " +
-            frases[indice];
 
-        boton.disabled = false;
+        if (
+            enfadado
+        ) {
 
-        boton.innerText =
-            "🍺 ¡OTRA VEZ!";
+            bola.innerText =
+                "🐶💢";
 
-    }, 2600);
+
+            mensaje.classList.add(
+                "pitoniso-enfadado"
+            );
+
+
+            mensaje.innerHTML =
+                `
+                <div class="samu-quiere">
+                EL PERRO SE HA ENFADADO
+                </div>
+
+                😡 NO PIENSA DECIRTE NADA.
+
+                <br><br>
+
+                Tendrás que volver
+                a consultarle.
+                `;
+
+
+            boton.innerText =
+                "🔮 INTENTAR DE NUEVO";
+
+        }
+
+        else {
+
+            const indice =
+                elegirFraseNueva();
+
+
+            bola.innerText =
+                "🐶🔮";
+
+
+            mensaje.innerHTML =
+                `
+                <div class="samu-quiere">
+                SAMU QUIERE QUE...
+                </div>
+
+                ${frases[indice]}
+                `;
+
+
+            boton.innerText =
+                "🔮 CONSULTAR OTRA VEZ";
+
+        }
+
+
+        boton.disabled =
+            false;
+
+
+    }, 2000);
 
 }
 
 
-/* ========================================
+
+/* =================================================
    DADOS
-======================================== */
+================================================= */
 
 const carasDados = [
-    "⚀",
-    "⚁",
-    "⚂",
-    "⚃",
-    "⚄",
-    "⚅"
+
+"⚀",
+"⚁",
+"⚂",
+"⚃",
+"⚄",
+"⚅"
+
 ];
 
 
@@ -1338,10 +2208,11 @@ function tirarDados() {
         );
 
 
-    boton.disabled = true;
+    boton.disabled =
+        true;
 
 
-    resultado.innerText =
+    resultado.innerHTML =
         "🔥 ¡LOS DADOS ESTÁN ARDIENDO! 🔥";
 
 
@@ -1354,24 +2225,25 @@ function tirarDados() {
     );
 
 
-    let animacion =
+    const animacion =
         setInterval(() => {
 
             dado1.innerText =
                 carasDados[
                     Math.floor(
-                        Math.random() * 6
+                        Math.random()*6
                     )
                 ];
+
 
             dado2.innerText =
                 carasDados[
                     Math.floor(
-                        Math.random() * 6
+                        Math.random()*6
                     )
                 ];
 
-        }, 100);
+        },100);
 
 
     setTimeout(() => {
@@ -1381,31 +2253,28 @@ function tirarDados() {
         );
 
 
-        const numero1 =
+        const n1 =
             Math.floor(
-                Math.random() * 6
+                Math.random()*6
             ) + 1;
 
 
-        const numero2 =
+        const n2 =
             Math.floor(
-                Math.random() * 6
+                Math.random()*6
             ) + 1;
 
 
         const suma =
-            numero1 + numero2;
+            n1 + n2;
 
 
         dado1.innerText =
-            carasDados[
-                numero1 - 1
-            ];
+            carasDados[n1-1];
+
 
         dado2.innerText =
-            carasDados[
-                numero2 - 1
-            ];
+            carasDados[n2-1];
 
 
         dado1.classList.remove(
@@ -1417,98 +2286,104 @@ function tirarDados() {
         );
 
 
-        /*
-        REGLA ESPECIAL DOBLES
-        */
-
         if (
-            numero1 === numero2
+            n1 === n2
         ) {
 
             resultado.innerHTML =
                 `
-                🔥🔥 <strong>¡DOBLES!</strong> 🔥🔥
+                <div class="samu-quiere">
+                SAMU QUIERE QUE...
+                </div>
+
+                🔥 <strong>¡DOBLES!</strong> 🔥
 
                 <br><br>
 
-                Has sacado
-
-                <strong>
-                ${numero1} + ${numero2} = ${suma}
-                </strong>
+                ${n1} + ${n2} = ${suma}
 
                 <br><br>
 
-                Da igual la puntuación...
-
-                <br>
-
-                🍺 <strong>¡BEBES!</strong> 🍺
+                🍺 <strong>BEBAS.</strong>
                 `;
 
-        } else {
+        }
+
+        else {
 
             resultado.innerHTML =
                 `
                 Has sacado
 
                 <strong>
-                ${numero1} + ${numero2}
+                ${n1} + ${n2}
                 </strong>
 
                 <br><br>
 
                 <span style="
-                    font-size:2.6rem;
-                    color:#d63031;
-                    font-weight:bold;
+                font-size:2.6rem;
+                font-weight:900;
+                color:#d63031;
                 ">
+
                 ${suma}
+
                 </span>
 
                 <br>
 
-                <strong>PUNTOS</strong>
+                PUNTOS
 
                 <br><br>
 
-                📱 Compara tu puntuación
-                con la de tu contrincante.
+                Compara con tu contrincante.
                 `;
 
         }
 
 
-        boton.disabled = false;
+        boton.disabled =
+            false;
 
 
         boton.innerText =
-            "🎲 ¡VOLVER A TIRAR!";
+            "🎲 VOLVER A TIRAR";
 
-    }, 1500);
+
+    },1500);
 
 }
 
 
-/* ========================================
+
+/* =================================================
    CRONO
-======================================== */
+================================================= */
 
-let inicioCrono = null;
+let inicioCrono =
+    null;
 
-let intervaloCrono = null;
+let intervaloCrono =
+    null;
 
-let cronoActivo = false;
+let cronoActivo =
+    false;
 
 
 function iniciarCrono() {
 
     if (
         cronoActivo
-    ) return;
+    ) {
+
+        return;
+
+    }
 
 
-    cronoActivo = true;
+    cronoActivo =
+        true;
 
 
     inicioCrono =
@@ -1519,14 +2394,16 @@ function iniciarCrono() {
         .getElementById(
             "btn-iniciar"
         )
-        .disabled = true;
+        .disabled =
+        true;
 
 
     document
         .getElementById(
             "btn-parar"
         )
-        .disabled = false;
+        .disabled =
+        false;
 
 
     document
@@ -1534,7 +2411,7 @@ function iniciarCrono() {
             "resultado-crono"
         )
         .innerText =
-        "¡¡¡AHORA!!! Intenta clavar el 0.00000 👀";
+        "¡¡¡AHORA!!!";
 
 
     intervaloCrono =
@@ -1548,17 +2425,12 @@ function iniciarCrono() {
 
 function actualizarCrono() {
 
-    const ahora =
-        performance.now();
-
-
-    const transcurrido =
-        (ahora - inicioCrono) /
-        1000;
-
-
     const restante =
-        5 - transcurrido;
+        5 -
+        (
+            performance.now() -
+            inicioCrono
+        ) / 1000;
 
 
     const display =
@@ -1586,7 +2458,7 @@ function actualizarCrono() {
     }
 
     else if (
-        restante < 0.5
+        restante < .5
     ) {
 
         display.classList.add(
@@ -1602,20 +2474,19 @@ function pararCrono() {
 
     if (
         !cronoActivo
-    ) return;
+    ) {
 
+        return;
 
-    const ahora =
-        performance.now();
-
-
-    const transcurrido =
-        (ahora - inicioCrono) /
-        1000;
+    }
 
 
     const restante =
-        5 - transcurrido;
+        5 -
+        (
+            performance.now() -
+            inicioCrono
+        ) / 1000;
 
 
     clearInterval(
@@ -1623,7 +2494,8 @@ function pararCrono() {
     );
 
 
-    cronoActivo = false;
+    cronoActivo =
+        false;
 
 
     const display =
@@ -1640,14 +2512,8 @@ function pararCrono() {
         .getElementById(
             "btn-parar"
         )
-        .disabled = true;
-
-
-    document
-        .getElementById(
-            "btn-iniciar"
-        )
-        .disabled = true;
+        .disabled =
+        true;
 
 
     const resultado =
@@ -1662,13 +2528,9 @@ function pararCrono() {
 
         resultado.innerHTML =
             `
-            💀 <strong>
-            TE HAS PASADO.
-            </strong>
+            💀 <strong>TE HAS PASADO.</strong>
 
-            <br>
-
-            Has parado en
+            <br><br>
 
             ${restante.toFixed(5)} s
             `;
@@ -1676,36 +2538,14 @@ function pararCrono() {
     }
 
     else if (
-        restante < 0.05
+        restante < .05
     ) {
 
         resultado.innerHTML =
             `
-            🤯🔥 <strong>
-            ¡CLAVADÍSIMO!
-            </strong>
+            🤯🔥 <strong>¡CLAVADÍSIMO!</strong>
 
-            <br>
-
-            ${restante.toFixed(5)}
-            segundos del cero.
-            `;
-
-    }
-
-    else if (
-        restante < 0.20
-    ) {
-
-        resultado.innerHTML =
-            `
-            🔥 <strong>
-            ¡MUY CERCA!
-            </strong>
-
-            <br>
-
-            Te has quedado en
+            <br><br>
 
             ${restante.toFixed(5)} s
             `;
@@ -1716,13 +2556,15 @@ function pararCrono() {
 
         resultado.innerHTML =
             `
-            🍺 Te has quedado en
+            Resultado:
+
+            <br><br>
 
             <strong>
             ${restante.toFixed(5)} s
             </strong>
 
-            <br>
+            <br><br>
 
             Que pruebe tu contrincante.
             `;
@@ -1739,9 +2581,12 @@ function resetCrono() {
     );
 
 
-    cronoActivo = false;
+    cronoActivo =
+        false;
 
-    inicioCrono = null;
+
+    inicioCrono =
+        null;
 
 
     const display =
@@ -1750,181 +2595,200 @@ function resetCrono() {
         );
 
 
-    display.innerText =
-        "5.00000";
+    if (
+        display
+    ) {
+
+        display.innerText =
+            "5.00000";
 
 
-    display.classList.remove(
-        "negativo",
-        "cerca"
-    );
+        display.classList.remove(
+            "negativo",
+            "cerca"
+        );
+
+    }
 
 
-    document
-        .getElementById(
+    const resultado =
+        document.getElementById(
             "resultado-crono"
-        )
-        .innerText =
-        "Pulsa iniciar cuando estés preparado. 👀";
+        );
 
 
-    document
-        .getElementById(
+    if (
+        resultado
+    ) {
+
+        resultado.innerText =
+            "Pulsa iniciar cuando estés preparado. 👀";
+
+    }
+
+
+    const iniciar =
+        document.getElementById(
             "btn-iniciar"
-        )
-        .disabled = false;
+        );
 
 
-    document
-        .getElementById(
+    const parar =
+        document.getElementById(
             "btn-parar"
-        )
-        .disabled = true;
+        );
+
+
+    if (
+        iniciar
+    ) {
+
+        iniciar.disabled =
+            false;
+
+    }
+
+
+    if (
+        parar
+    ) {
+
+        parar.disabled =
+            true;
+
+    }
 
 }
 
 
-/* ========================================
+
+/* =================================================
    BARAJA
-======================================== */
+================================================= */
 
-const valoresCartas = [
+const nombresCartas = [
 
-    {
-        nombre:"2",
-        valor:2
-    },
-
-    {
-        nombre:"3",
-        valor:3
-    },
-
-    {
-        nombre:"4",
-        valor:4
-    },
-
-    {
-        nombre:"5",
-        valor:5
-    },
-
-    {
-        nombre:"6",
-        valor:6
-    },
-
-    {
-        nombre:"7",
-        valor:7
-    },
-
-    {
-        nombre:"8",
-        valor:8
-    },
-
-    {
-        nombre:"9",
-        valor:9
-    },
-
-    {
-        nombre:"10",
-        valor:10
-    },
-
-    {
-        nombre:"J",
-        valor:11
-    },
-
-    {
-        nombre:"Q",
-        valor:12
-    },
-
-    {
-        nombre:"K",
-        valor:13
-    },
-
-    {
-        nombre:"A",
-        valor:14
-    }
+["2",2],
+["3",3],
+["4",4],
+["5",5],
+["6",6],
+["7",7],
+["8",8],
+["9",9],
+["10",10],
+["J",11],
+["Q",12],
+["K",13],
+["A",14]
 
 ];
 
 
-const palos = [
+const palosCartas = [
 
-    {
-        simbolo:"♠",
-        color:"negra"
-    },
-
-    {
-        simbolo:"♣",
-        color:"negra"
-    },
-
-    {
-        simbolo:"♥",
-        color:"roja"
-    },
-
-    {
-        simbolo:"♦",
-        color:"roja"
-    }
+["♠","negra"],
+["♣","negra"],
+["♥","roja"],
+["♦","roja"]
 
 ];
 
 
-let cartaActual = null;
+let baraja =
+    [];
 
-let tragos = 0;
+let cartaActual =
+    null;
 
-let partidaBarajaActiva = false;
+let tragos =
+    0;
+
+let partidaBaraja =
+    false;
 
 
-function cartaAleatoria() {
+function crearBaraja() {
 
-    const valor =
-        valoresCartas[
+    const nueva =
+        [];
+
+
+    nombresCartas.forEach(
+        ([nombre,valor]) => {
+
+            palosCartas.forEach(
+                ([palo,color]) => {
+
+                    nueva.push({
+
+                        nombre:
+                            nombre,
+
+                        valor:
+                            valor,
+
+                        palo:
+                            palo,
+
+                        color:
+                            color
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    for (
+        let i =
+            nueva.length - 1;
+
+        i > 0;
+
+        i--
+    ) {
+
+        const j =
             Math.floor(
                 Math.random() *
-                valoresCartas.length
-            )
+                (i + 1)
+            );
+
+
+        [
+            nueva[i],
+            nueva[j]
+        ] =
+        [
+            nueva[j],
+            nueva[i]
         ];
 
-
-    const palo =
-        palos[
-            Math.floor(
-                Math.random() *
-                palos.length
-            )
-        ];
+    }
 
 
-    return {
+    return nueva;
 
-        nombre:
-            valor.nombre,
+}
 
-        valor:
-            valor.valor,
 
-        palo:
-            palo.simbolo,
+function sacarCarta() {
 
-        color:
-            palo.color
+    if (
+        baraja.length === 0
+    ) {
 
-    };
+        baraja =
+            crearBaraja();
+
+    }
+
+
+    return baraja.pop();
 
 }
 
@@ -1966,47 +2830,45 @@ function pintarCarta(carta) {
 }
 
 
-function activarBotonesBaraja(
+function botonesBaraja(
     activo
 ) {
 
-    document
-        .getElementById(
-            "btn-menor"
-        )
-        .disabled =
-        !activo;
+    [
+        "btn-menor",
+        "btn-igual",
+        "btn-mayor"
+    ]
+    .forEach(
+        id => {
 
+            document
+                .getElementById(id)
+                .disabled =
+                !activo;
 
-    document
-        .getElementById(
-            "btn-igual"
-        )
-        .disabled =
-        !activo;
-
-
-    document
-        .getElementById(
-            "btn-mayor"
-        )
-        .disabled =
-        !activo;
+        }
+    );
 
 }
 
 
 function iniciarBaraja() {
 
-    cartaActual =
-        cartaAleatoria();
+    baraja =
+        crearBaraja();
 
 
-    tragos = 0;
+    tragos =
+        0;
 
 
-    partidaBarajaActiva =
+    partidaBaraja =
         true;
+
+
+    cartaActual =
+        sacarCarta();
 
 
     pintarCarta(
@@ -2037,8 +2899,13 @@ function iniciarBaraja() {
         <br><br>
 
         ¿La siguiente será
-        MAYOR, MENOR o IGUAL?
+        mayor, menor o igual?
         `;
+
+
+    botonesBaraja(
+        true
+    );
 
 
     document
@@ -2048,58 +2915,59 @@ function iniciarBaraja() {
         .innerText =
         "↻ REINICIAR PARTIDA";
 
-
-    activarBotonesBaraja(
-        true
-    );
-
 }
 
 
-function jugarCarta(eleccion) {
+function jugarCarta(
+    eleccion
+) {
 
     if (
-        !partidaBarajaActiva
-    ) return;
+        !partidaBaraja
+    ) {
+
+        return;
+
+    }
 
 
-    const nuevaCarta =
-        cartaAleatoria();
+    const nueva =
+        sacarCarta();
 
 
-    let resultadoReal;
+    let real;
 
 
     if (
-        nuevaCarta.valor >
+        nueva.valor >
         cartaActual.valor
     ) {
 
-        resultadoReal =
+        real =
             "mayor";
 
     }
 
     else if (
-        nuevaCarta.valor <
+        nueva.valor <
         cartaActual.valor
     ) {
 
-        resultadoReal =
+        real =
             "menor";
 
     }
 
     else {
 
-        resultadoReal =
+        real =
             "igual";
 
     }
 
 
     pintarCarta(
-        nuevaCarta
+        nueva
     );
 
 
@@ -2111,7 +2979,7 @@ function jugarCarta(eleccion) {
 
     if (
         eleccion ===
-        resultadoReal
+        real
     ) {
 
         tragos++;
@@ -2131,15 +2999,11 @@ function jugarCarta(eleccion) {
 
             <br><br>
 
-            Ha salido
-
-            <strong>
-            ${nuevaCarta.nombre}${nuevaCarta.palo}
-            </strong>
+            ${nueva.nombre}${nueva.palo}
 
             <br><br>
 
-            🍺 Ahora tienes
+            Llevas
 
             <strong>
             ${tragos}
@@ -2152,18 +3016,18 @@ function jugarCarta(eleccion) {
 
             <br><br>
 
-            ¿Te atreves a seguir?
+            ¿Seguimos?
             `;
 
 
         cartaActual =
-            nuevaCarta;
+            nueva;
 
     }
 
     else {
 
-        const tragosABeber =
+        const beber =
             Math.max(
                 1,
                 tragos
@@ -2172,49 +3036,40 @@ function jugarCarta(eleccion) {
 
         estado.innerHTML =
             `
-            💀 <strong>
-            ¡HAS FALLADO!
-            </strong>
+            <div class="samu-quiere">
+            SAMU QUIERE QUE...
+            </div>
+
+            💀 HAS FALLADO.
 
             <br><br>
 
             Ha salido
 
             <strong>
-            ${nuevaCarta.nombre}${nuevaCarta.palo}
+            ${nueva.nombre}${nueva.palo}
             </strong>
 
             <br><br>
 
-            Tú dijiste:
+            🍺 BEBAS
 
             <strong>
-            ${eleccion.toUpperCase()}
-            </strong>
-
-            <br><br>
-
-            🍺🍺🍺
-
-            <br>
-
-            <strong>
-            ¡BÉBETE
-            ${tragosABeber}
-            ${tragosABeber === 1
+            ${beber}
+            ${beber === 1
                 ? "TRAGO"
-                : "TRAGOS"}!
+                : "TRAGOS"}.
             </strong>
             `;
 
 
-        activarBotonesBaraja(
+        partidaBaraja =
+            false;
+
+
+        botonesBaraja(
             false
         );
-
-
-        partidaBarajaActiva =
-            false;
 
 
         document
@@ -2227,6 +3082,882 @@ function jugarCarta(eleccion) {
     }
 
 }
+
+
+
+/* =================================================
+   RULETA ETÍLICA MORTAL
+================================================= */
+
+const destinosMortales = [
+
+{
+    emoji:"🍺",
+    texto:"bebas 1 trago."
+},
+
+{
+    emoji:"👉",
+    texto:"elijas a alguien para que beba 1 trago."
+},
+
+{
+    emoji:"👀",
+    texto:"beban todos los que estén pendientes de ti."
+},
+
+{
+    emoji:"⚫",
+    texto:"beban todos los que lleven algo negro."
+},
+
+{
+    emoji:"😈",
+    texto:"beban todos menos tú."
+},
+
+{
+    emoji:"✌️",
+    texto:"elijas a dos personas y ambas beban."
+},
+
+{
+    emoji:"⚔️",
+    texto:"elijas a alguien para un piedra, papel o tijera. Quien pierda bebe."
+},
+
+{
+    emoji:"✋",
+    texto:"todos levantéis la mano. El último bebe."
+},
+
+{
+    emoji:"➡️",
+    texto:"beba la persona situada a tu derecha."
+},
+
+{
+    emoji:"⬅️",
+    texto:"beba la persona situada a tu izquierda."
+},
+
+{
+    emoji:"🔋",
+    texto:"comparéis batería. Quien tenga menos porcentaje bebe."
+},
+
+{
+    emoji:"🤚",
+    texto:"todos toquéis una mesa. El último bebe."
+},
+
+{
+    emoji:"🥂",
+    texto:"brindéis todos y bebáis un trago."
+},
+
+{
+    emoji:"🔄",
+    texto:"elijas a otra persona para que gire la ruleta en tu lugar."
+},
+
+{
+    emoji:"🛡️",
+    texto:"te libres. Esta vez no bebe nadie."
+},
+
+{
+    emoji:"👑",
+    texto:"SAMU DECIDA. Busca a Samu y acepta su sentencia."
+}
+
+];
+
+
+let etilicaGirando =
+    false;
+
+
+function girarEtilica() {
+
+    if (
+        etilicaGirando
+    ) {
+
+        return;
+
+    }
+
+
+    etilicaGirando =
+        true;
+
+
+    const disco =
+        document.getElementById(
+            "discoEtilico"
+        );
+
+
+    const resultado =
+        document.getElementById(
+            "resultado-etilico"
+        );
+
+
+    const boton =
+        document.getElementById(
+            "boton-etilico"
+        );
+
+
+    boton.disabled =
+        true;
+
+
+    resultado.innerHTML =
+        `
+        ☠️
+
+        <br>
+
+        Samu está decidiendo...
+        `;
+
+
+    disco.classList.remove(
+        "etilica-girando"
+    );
+
+
+    void disco.offsetWidth;
+
+
+    disco.classList.add(
+        "etilica-girando"
+    );
+
+
+    const elegido =
+        destinosMortales[
+            Math.floor(
+                Math.random() *
+                destinosMortales.length
+            )
+        ];
+
+
+    setTimeout(() => {
+
+        resultado.innerHTML =
+            `
+            <div>
+
+            <div style="
+            font-size:3rem;
+            margin-bottom:10px;
+            ">
+            ${elegido.emoji}
+            </div>
+
+            <div class="samu-quiere">
+            SAMU QUIERE QUE...
+            </div>
+
+            <div style="
+            font-size:1.25rem;
+            ">
+            ${elegido.texto}
+            </div>
+
+            </div>
+            `;
+
+
+        boton.disabled =
+            false;
+
+
+        boton.innerText =
+            "☠️ VOLVER A GIRAR";
+
+
+        etilicaGirando =
+            false;
+
+
+    },3200);
+
+}
+
+
+
+/* =================================================
+   TRAGAPERRAS
+================================================= */
+
+const simbolosSlot = [
+
+"🍒",
+"🍋",
+"🍊",
+"🍇",
+"🍉",
+"🔔",
+"7️⃣"
+
+];
+
+
+let reels = [
+    0,
+    1,
+    3
+];
+
+
+let avances =
+    0;
+
+
+let slotPendiente =
+    false;
+
+
+let slotGirando =
+    false;
+
+
+function pintarSlots() {
+
+    document
+        .getElementById(
+            "reel1"
+        )
+        .innerText =
+        simbolosSlot[
+            reels[0]
+        ];
+
+
+    document
+        .getElementById(
+            "reel2"
+        )
+        .innerText =
+        simbolosSlot[
+            reels[1]
+        ];
+
+
+    document
+        .getElementById(
+            "reel3"
+        )
+        .innerText =
+        simbolosSlot[
+            reels[2]
+        ];
+
+
+    document
+        .getElementById(
+            "numeroAvances"
+        )
+        .innerText =
+        avances;
+
+}
+
+
+function actualizarBotonesAvance() {
+
+    const activo =
+        slotPendiente &&
+        avances > 0;
+
+
+    [
+        "avance1",
+        "avance2",
+        "avance3"
+    ]
+    .forEach(
+        id => {
+
+            document
+                .getElementById(id)
+                .disabled =
+                !activo;
+
+        }
+    );
+
+}
+
+
+function girarSlots() {
+
+    if (
+        slotGirando ||
+        slotPendiente
+    ) {
+
+        return;
+
+    }
+
+
+    slotGirando =
+        true;
+
+
+    const boton =
+        document.getElementById(
+            "botonSpin"
+        );
+
+
+    const cobrar =
+        document.getElementById(
+            "botonCobrar"
+        );
+
+
+    const resultado =
+        document.getElementById(
+            "slotResultado"
+        );
+
+
+    boton.disabled =
+        true;
+
+
+    cobrar.disabled =
+        true;
+
+
+    resultado.classList.remove(
+        "jackpot"
+    );
+
+
+    resultado.innerHTML =
+        `
+        🎰 Girando...
+
+        <br>
+
+        La casa siempre gana.
+        Más o menos.
+        `;
+
+
+    const elementos = [
+
+        document.getElementById(
+            "reel1"
+        ),
+
+        document.getElementById(
+            "reel2"
+        ),
+
+        document.getElementById(
+            "reel3"
+        )
+
+    ];
+
+
+    elementos.forEach(
+        elemento =>
+            elemento.classList.add(
+                "rodillo-girando"
+            )
+    );
+
+
+    const animacion =
+        setInterval(() => {
+
+            elementos.forEach(
+                elemento => {
+
+                    elemento.innerText =
+                        simbolosSlot[
+                            Math.floor(
+                                Math.random() *
+                                simbolosSlot.length
+                            )
+                        ];
+
+                }
+            );
+
+        },90);
+
+
+    setTimeout(() => {
+
+        clearInterval(
+            animacion
+        );
+
+
+        elementos.forEach(
+            elemento =>
+                elemento.classList.remove(
+                    "rodillo-girando"
+                )
+        );
+
+
+        reels = [
+
+            Math.floor(
+                Math.random() *
+                simbolosSlot.length
+            ),
+
+            Math.floor(
+                Math.random() *
+                simbolosSlot.length
+            ),
+
+            Math.floor(
+                Math.random() *
+                simbolosSlot.length
+            )
+
+        ];
+
+
+        pintarSlots();
+
+
+        /*
+        Posibilidad de ganar avances.
+        */
+
+        const suerte =
+            Math.random();
+
+
+        let ganados =
+            0;
+
+
+        if (
+            suerte < .08
+        ) {
+
+            ganados =
+                2;
+
+        }
+
+        else if (
+            suerte < .35
+        ) {
+
+            ganados =
+                1;
+
+        }
+
+
+        if (
+            ganados > 0
+        ) {
+
+            avances =
+                Math.min(
+                    5,
+                    avances +
+                    ganados
+                );
+
+
+            resultado.innerHTML =
+                `
+                ⚡ <strong>
+                ¡HAS GANADO
+                ${ganados}
+                ${ganados === 1
+                    ? "AVANCE"
+                    : "AVANCES"}!
+                </strong>
+
+                <br><br>
+
+                Puedes gastar avances
+                para mover un rodillo
+                antes de cobrar.
+
+                <br><br>
+
+                O puedes cobrar
+                directamente.
+                `;
+
+        }
+
+        else {
+
+            resultado.innerHTML =
+                `
+                🎰 Jugada terminada.
+
+                <br><br>
+
+                Puedes cobrar el resultado
+
+                ${
+                    avances > 0
+                    ?
+                    "o gastar alguno de tus avances."
+                    :
+                    "ahora."
+                }
+                `;
+
+        }
+
+
+        slotPendiente =
+            true;
+
+
+        slotGirando =
+            false;
+
+
+        document
+            .getElementById(
+                "numeroAvances"
+            )
+            .innerText =
+            avances;
+
+
+        actualizarBotonesAvance();
+
+
+        cobrar.disabled =
+            false;
+
+
+    },1800);
+
+}
+
+
+function usarAvance(
+    reel
+) {
+
+    if (
+        !slotPendiente ||
+        avances <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    avances--;
+
+
+    reels[reel] =
+        (
+            reels[reel] + 1
+        )
+        %
+        simbolosSlot.length;
+
+
+    pintarSlots();
+
+
+    actualizarBotonesAvance();
+
+
+    document
+        .getElementById(
+            "slotResultado"
+        )
+        .innerHTML =
+        `
+        ⚡ Has usado un avance
+        en el rodillo
+        ${reel + 1}.
+
+        <br><br>
+
+        Te quedan
+
+        <strong>
+        ${avances}
+        </strong>
+
+        avances.
+
+        <br><br>
+
+        Puedes seguir moviendo
+        o cobrar.
+        `;
+
+}
+
+
+function calcularPremioSlot() {
+
+    const s1 =
+        simbolosSlot[
+            reels[0]
+        ];
+
+    const s2 =
+        simbolosSlot[
+            reels[1]
+        ];
+
+    const s3 =
+        simbolosSlot[
+            reels[2]
+        ];
+
+
+    if (
+        s1 === "7️⃣" &&
+        s2 === "7️⃣" &&
+        s3 === "7️⃣"
+    ) {
+
+        return {
+
+            tragos:3,
+
+            titulo:
+                "🎉 JACKPOT 🎉",
+
+            mensaje:
+                "¡TRES SIETES!"
+
+        };
+
+    }
+
+
+    if (
+        s1 === "🔔" &&
+        s2 === "🔔" &&
+        s3 === "🔔"
+    ) {
+
+        return {
+
+            tragos:3,
+
+            titulo:
+                "🔔 PREMIO GRANDE 🔔",
+
+            mensaje:
+                "¡Tres campanas!"
+
+        };
+
+    }
+
+
+    if (
+        s1 === s2 &&
+        s2 === s3
+    ) {
+
+        return {
+
+            tragos:2,
+
+            titulo:
+                "🍒 TRIPLE 🍒",
+
+            mensaje:
+                "¡Tres símbolos iguales!"
+
+        };
+
+    }
+
+
+    if (
+        s1 === s2 ||
+        s1 === s3 ||
+        s2 === s3
+    ) {
+
+        return {
+
+            tragos:1,
+
+            titulo:
+                "✨ PAREJA ✨",
+
+            mensaje:
+                "Dos símbolos iguales."
+
+        };
+
+    }
+
+
+    return {
+
+        tragos:0,
+
+        titulo:
+            "💨 NADA",
+
+        mensaje:
+            "La máquina se ha quedado con tu dignidad."
+
+    };
+
+}
+
+
+function cobrarSlot() {
+
+    if (
+        !slotPendiente
+    ) {
+
+        return;
+
+    }
+
+
+    const premio =
+        calcularPremioSlot();
+
+
+    const resultado =
+        document.getElementById(
+            "slotResultado"
+        );
+
+
+    if (
+        premio.tragos > 0
+    ) {
+
+        resultado.innerHTML =
+            `
+            <div class="samu-quiere">
+            SAMU QUIERE QUE...
+            </div>
+
+            <div style="
+            font-size:1.5rem;
+            font-weight:900;
+            ">
+            ${premio.titulo}
+            </div>
+
+            <br>
+
+            ${premio.mensaje}
+
+            <br><br>
+
+            🍺 BEBAS
+
+            <strong>
+            ${premio.tragos}
+            ${premio.tragos === 1
+                ? "TRAGO"
+                : "TRAGOS"}
+            </strong>.
+            `;
+
+
+        if (
+            premio.tragos >= 3
+        ) {
+
+            resultado.classList.add(
+                "jackpot"
+            );
+
+        }
+
+    }
+
+    else {
+
+        resultado.innerHTML =
+            `
+            <div style="
+            font-size:1.5rem;
+            font-weight:900;
+            ">
+            ${premio.titulo}
+            </div>
+
+            <br>
+
+            ${premio.mensaje}
+
+            <br><br>
+
+            🛡️ Esta vez te libras.
+            `;
+
+    }
+
+
+    slotPendiente =
+        false;
+
+
+    actualizarBotonesAvance();
+
+
+    document
+        .getElementById(
+            "botonCobrar"
+        )
+        .disabled =
+        true;
+
+
+    document
+        .getElementById(
+            "botonSpin"
+        )
+        .disabled =
+        false;
+
+
+    document
+        .getElementById(
+            "botonSpin"
+        )
+        .innerText =
+        "🎰 VOLVER A GIRAR";
+
+}
+
+
+
+/* Pintar tragaperras inicial */
+
+pintarSlots();
+
 
 </script>
 
