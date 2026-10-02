@@ -1,561 +1,973 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumple Samu!</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
-            color: #2d3436;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        .contenedor {
-            width: 100%;
-            max-width: 700px;
-            background: rgba(255,255,255,0.96);
-            padding: 30px 20px 35px;
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.20);
-            text-align: center;
-        }
-
-        h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .zona-juego {
-            position: relative;
-            height: 320px;
-            margin-top: 10px;
-        }
-
-        /* -------------------------
-           RULETA
-        ------------------------- */
-
-        .ruleta-container {
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            transform: translateX(-50%);
-        }
-
-        .flecha {
-            position: absolute;
-            z-index: 10;
-            left: 50%;
-            top: -20px;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-
-            border-left: 18px solid transparent;
-            border-right: 18px solid transparent;
-            border-top: 35px solid #2d3436;
-        }
-
-        .ruleta {
-            width: 230px;
-            height: 230px;
-            border-radius: 50%;
-
-            border: 9px solid #2d3436;
-
-            background: conic-gradient(
-                #ff7675 0deg 45deg,
-                #74b9ff 45deg 90deg,
-                #ffeaa7 90deg 135deg,
-                #55efc4 135deg 180deg,
-                #a29bfe 180deg 225deg,
-                #fd79a8 225deg 270deg,
-                #fab1a0 270deg 315deg,
-                #81ecec 315deg 360deg
-            );
-
-            box-shadow:
-                0 10px 20px rgba(0,0,0,0.25),
-                inset 0 0 0 5px white;
-
-            position: relative;
-        }
-
-        .centro-ruleta {
-            position: absolute;
-            width: 62px;
-            height: 62px;
-            background: white;
-            border: 6px solid #2d3436;
-            border-radius: 50%;
-
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 30px;
-            z-index: 3;
-        }
-
-        .interrogantes {
-            position: absolute;
-            inset: 0;
-            font-size: 26px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 3px rgba(0,0,0,.35);
-        }
-
-        .interrogantes span {
-            position: absolute;
-        }
-
-        .q1 { top: 15px; left: 105px; }
-        .q2 { top: 50px; right: 25px; }
-        .q3 { bottom: 50px; right: 25px; }
-        .q4 { bottom: 15px; left: 105px; }
-        .q5 { bottom: 50px; left: 25px; }
-        .q6 { top: 50px; left: 25px; }
-
-        /* -------------------------
-           PERRO BORRACHO
-        ------------------------- */
-
-        .perro {
-            position: absolute;
-            left: calc(50% - 205px);
-            bottom: 0;
-
-            font-size: 85px;
-
-            transform-origin: bottom center;
-        }
-
-        .cerveza {
-            position: absolute;
-            left: calc(50% - 145px);
-            bottom: 5px;
-
-            font-size: 46px;
-            transform: rotate(-20deg);
-        }
-
-        .burbujas {
-            position: absolute;
-            left: calc(50% - 175px);
-            bottom: 95px;
-
-            font-size: 26px;
-            opacity: 0;
-        }
-
-        /* cuerda del perro a la ruleta */
-
-        .cuerda {
-            position: absolute;
-            left: calc(50% - 135px);
-            bottom: 80px;
-
-            width: 115px;
-            height: 5px;
-
-            background: #795548;
-            border-radius: 5px;
-
-            transform: rotate(-20deg);
-            transform-origin: left center;
-        }
-
-        /* -------------------------
-           ANIMACIONES
-        ------------------------- */
-
-        .girando {
-            animation: girarRuleta 2.6s cubic-bezier(.15,.65,.15,1);
-        }
-
-        @keyframes girarRuleta {
-
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(1800deg);
-            }
-        }
-
-        .perro-tirando {
-            animation: perroBorracho .45s ease-in-out infinite alternate;
-        }
-
-        @keyframes perroBorracho {
-
-            0% {
-                transform: rotate(-12deg) translateX(-5px);
-            }
-
-            100% {
-                transform: rotate(13deg) translateX(8px);
-            }
-        }
-
-        .cuerda-tirando {
-            animation: tirarCuerda .45s ease-in-out infinite alternate;
-        }
-
-        @keyframes tirarCuerda {
-
-            0% {
-                transform: rotate(-20deg) scaleX(1);
-            }
-
-            100% {
-                transform: rotate(-15deg) scaleX(.82);
-            }
-        }
-
-        .burbujas-activas {
-            animation: burbujas 1s infinite;
-        }
-
-        @keyframes burbujas {
-
-            0% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-        }
-
-        /* -------------------------
-           FRASE
-        ------------------------- */
-
-        #frase-destino {
-            margin: 20px auto 25px;
-            padding: 20px;
-
-            min-height: 100px;
-
-            background: #f8f9fa;
-            border-radius: 15px;
-
-            font-size: 1.25rem;
-            line-height: 1.45;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            box-shadow: inset 0 0 10px rgba(0,0,0,.07);
-        }
-
-        .resultado {
-            animation: aparecer .5s ease;
-        }
-
-        @keyframes aparecer {
-
-            from {
-                transform: scale(.7) rotate(-2deg);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* -------------------------
-           BOTÓN
-        ------------------------- */
-
-        button {
-            background: #ff7675;
-            color: white;
-
-            border: none;
-            padding: 16px 30px;
-
-            font-size: 1.1rem;
-            font-weight: bold;
-
-            border-radius: 14px;
-            cursor: pointer;
-
-            box-shadow: 0 5px 10px rgba(0,0,0,.15);
-
-            transition: .2s;
-        }
-
-        button:hover {
-            background: #d63031;
-            transform: scale(1.05);
-        }
-
-        button:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .mensaje-perro {
-            font-size: .9rem;
-            margin-top: 12px;
-            opacity: .7;
-        }
-
-
-        /* MÓVIL */
-
-        @media (max-width: 550px) {
-
-            .contenedor {
-                padding: 25px 12px;
-            }
-
-            .zona-juego {
-                height: 280px;
-            }
-
-            .ruleta {
-                width: 190px;
-                height: 190px;
-            }
-
-            .perro {
-                font-size: 68px;
-                left: calc(50% - 170px);
-            }
-
-            .cerveza {
-                font-size: 38px;
-                left: calc(50% - 115px);
-            }
-
-            .cuerda {
-                left: calc(50% - 110px);
-                width: 90px;
-            }
-
-            .q1,
-            .q4 {
-                left: 86px;
-            }
-
-            #frase-destino {
-                font-size: 1.05rem;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CumpleSamu 🍻</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+    color: #2d3436;
+    padding: 20px;
+}
+
+.pantalla {
+    display: none;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+.contenedor {
+    background: rgba(255,255,255,0.97);
+    padding: 30px 20px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 5px;
+}
+
+.subtitulo {
+    font-size: 1.1rem;
+    opacity: .75;
+    margin-bottom: 30px;
+}
+
+/* =====================
+   MENÚ
+===================== */
+
+.menu-juegos {
+    display: grid;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.tarjeta-juego {
+    border: none;
+    width: 100%;
+    padding: 25px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.15rem;
+    font-weight: bold;
+    transition: .2s;
+    color: #2d3436;
+    background: #fff3cd;
+    box-shadow: 0 5px 10px rgba(0,0,0,.12);
+}
+
+.tarjeta-juego:hover {
+    transform: scale(1.03);
+}
+
+.icono-menu {
+    display: block;
+    font-size: 50px;
+    margin-bottom: 8px;
+}
+
+.boton-volver {
+    background: #636e72;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.boton-principal {
+    background: #ff7675;
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    transition: .2s;
+}
+
+.boton-principal:hover {
+    background: #d63031;
+    transform: scale(1.04);
+}
+
+.boton-principal:disabled {
+    opacity: .6;
+    cursor: default;
+    transform: none;
+}
+
+.instrucciones {
+    background: #f5f6fa;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px 0 25px;
+    line-height: 1.5;
+}
+
+/* =====================
+   RULETA
+===================== */
+
+.zona-juego {
+    position: relative;
+    height: 310px;
+}
+
+.ruleta-container {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+}
+
+.flecha {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: -20px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 35px solid #2d3436;
+}
+
+.ruleta {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 9px solid #2d3436;
+
+    background: conic-gradient(
+        #ff7675 0deg 45deg,
+        #74b9ff 45deg 90deg,
+        #ffeaa7 90deg 135deg,
+        #55efc4 135deg 180deg,
+        #a29bfe 180deg 225deg,
+        #fd79a8 225deg 270deg,
+        #fab1a0 270deg 315deg,
+        #81ecec 315deg 360deg
+    );
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.25),
+        inset 0 0 0 5px white;
+
+    position: relative;
+}
+
+.centro-ruleta {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    background: white;
+    border: 6px solid #2d3436;
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+.perro {
+    position: absolute;
+    left: calc(50% - 200px);
+    bottom: 5px;
+    font-size: 80px;
+    transform-origin: bottom center;
+}
+
+.cerveza {
+    position: absolute;
+    left: calc(50% - 140px);
+    bottom: 5px;
+    font-size: 42px;
+    transform: rotate(-20deg);
+}
+
+.cuerda {
+    position: absolute;
+    left: calc(50% - 132px);
+    bottom: 82px;
+    width: 115px;
+    height: 5px;
+    background: #795548;
+    border-radius: 5px;
+    transform: rotate(-20deg);
+}
+
+.girando {
+    animation: girarRuleta 2.6s cubic-bezier(.15,.65,.15,1);
+}
+
+@keyframes girarRuleta {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(1800deg); }
+}
+
+.perro-tirando {
+    animation: perroBorracho .4s ease-in-out infinite alternate;
+}
+
+@keyframes perroBorracho {
+    0% { transform: rotate(-12deg) translateX(-5px); }
+    100% { transform: rotate(13deg) translateX(8px); }
+}
+
+#frase-destino {
+    margin: 15px 0 22px;
+    min-height: 100px;
+    padding: 18px;
+
+    background: #f8f9fa;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* =====================
+   DADOS
+===================== */
+
+.zona-dados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin: 30px 0;
+}
+
+.jugador {
+    flex: 1;
+}
+
+.nombre-jugador {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dado {
+    width: 125px;
+    height: 125px;
+    margin: auto;
+
+    background: white;
+    border: 5px solid #2d3436;
+    border-radius: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 80px;
+
+    box-shadow: 0 8px 15px rgba(0,0,0,.15);
+}
+
+.dado-rodando {
+    animation: rodarDado .15s infinite;
+}
+
+@keyframes rodarDado {
+
+    0% {
+        transform: rotate(-10deg) scale(.9);
+    }
+
+    50% {
+        transform: rotate(15deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(-5deg) scale(.95);
+    }
+}
+
+#resultado-dados {
+    margin: 25px 0;
+    min-height: 65px;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    background: #f5f6fa;
+    border-radius: 15px;
+}
+
+/* =====================
+   CRONO
+===================== */
+
+.crono {
+    font-family: "Courier New", monospace;
+    font-size: clamp(2.5rem, 11vw, 5rem);
+    font-weight: bold;
+    margin: 35px 0 10px;
+    letter-spacing: -3px;
+}
+
+.crono.negativo {
+    color: #d63031;
+}
+
+.crono.cerca {
+    color: #00b894;
+}
+
+.botones-crono {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-iniciar {
+    background: #00b894;
+}
+
+.btn-parar {
+    background: #d63031;
+}
+
+.btn-reset {
+    background: #636e72;
+}
+
+.resultado-crono {
+    margin-top: 25px;
+    padding: 15px;
+    min-height: 60px;
+    border-radius: 15px;
+    background: #f5f6fa;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* =====================
+   MÓVIL
+===================== */
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .contenedor {
+        padding: 25px 12px;
+    }
+
+    .zona-dados {
+        gap: 12px;
+    }
+
+    .dado {
+        width: 105px;
+        height: 105px;
+        font-size: 68px;
+    }
+
+    .ruleta {
+        width: 185px;
+        height: 185px;
+    }
+
+    .zona-juego {
+        height: 270px;
+    }
+
+    .perro {
+        left: calc(50% - 165px);
+        font-size: 65px;
+    }
+
+    .cerveza {
+        left: calc(50% - 115px);
+        font-size: 35px;
+    }
+
+    .cuerda {
+        left: calc(50% - 108px);
+        width: 90px;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
+<!-- ========================
+     MENÚ
+======================== -->
+
+<section id="inicio" class="pantalla activa">
+
 <div class="contenedor">
 
-    <h2>🐶 LA RULETA DEL PERRO BORRACHO 🍺</h2>
+    <div style="font-size:65px;">🍻🎂🍻</div>
 
-    <div class="zona-juego">
+    <h1>¡BIENVENIDO AL CUMPLESAMU!</h1>
 
-        <div id="perro" class="perro">
-            🐶
-        </div>
+    <div class="subtitulo">
+        Elige sabiamente. O no. Probablemente ya sea demasiado tarde.
+    </div>
 
-        <div class="cerveza">
-            🍺
-        </div>
+    <div class="menu-juegos">
 
-        <div id="burbujas" class="burbujas">
-            🫧💫
-        </div>
+        <button class="tarjeta-juego"
+                onclick="abrirJuego('ruleta')">
 
-        <div id="cuerda" class="cuerda"></div>
+            <span class="icono-menu">🐶🎰</span>
+
+            LA RULETA DEL PERRO BORRACHO
+
+        </button>
 
 
-        <div class="ruleta-container">
+        <button class="tarjeta-juego"
+                onclick="abrirJuego('dados')">
 
-            <div class="flecha"></div>
+            <span class="icono-menu">🎲🔥</span>
 
-            <div id="ruleta" class="ruleta">
+            LOS DADOS CALIENTES
 
-                <div class="interrogantes">
-                    <span class="q1">?</span>
-                    <span class="q2">?</span>
-                    <span class="q3">?</span>
-                    <span class="q4">?</span>
-                    <span class="q5">?</span>
-                    <span class="q6">?</span>
-                </div>
+        </button>
 
-                <div class="centro-ruleta">
-                    🍻
-                </div>
 
+        <button class="tarjeta-juego"
+                onclick="abrirJuego('crono')">
+
+            <span class="icono-menu">⏱️🍺</span>
+
+            EL CRONO CERVECERO
+
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ========================
+     RULETA
+======================== -->
+
+<section id="ruleta" class="pantalla">
+
+<div class="contenedor">
+
+<button class="boton-volver"
+        onclick="volverMenu()">
+← Volver al CumpleSamu
+</button>
+
+<h2>🐶 LA RULETA DEL PERRO BORRACHO 🍺</h2>
+
+<div class="zona-juego">
+
+    <div id="perro" class="perro">
+        🐶
+    </div>
+
+    <div class="cerveza">
+        🍺
+    </div>
+
+    <div class="cuerda"></div>
+
+    <div class="ruleta-container">
+
+        <div class="flecha"></div>
+
+        <div id="ruletaDisco" class="ruleta">
+
+            <div class="centro-ruleta">
+                🍻
             </div>
 
         </div>
 
     </div>
 
+</div>
 
-    <div id="frase-destino">
-        El perro está preparado... más o menos. 🍺
+
+<div id="frase-destino">
+    El perro está preparado... más o menos. 🍺
+</div>
+
+
+<button
+    id="boton-ruleta"
+    class="boton-principal"
+    onclick="girarRuleta()">
+
+    🎰 ¡TIRA DE LA RULETA!
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ========================
+     DADOS
+======================== -->
+
+<section id="dados" class="pantalla">
+
+<div class="contenedor">
+
+<button class="boton-volver"
+        onclick="volverMenu()">
+← Volver al CumpleSamu
+</button>
+
+<h2>🎲🔥 LOS DADOS CALIENTES 🔥🎲</h2>
+
+<div class="instrucciones">
+
+<strong>¿Cómo se juega?</strong><br><br>
+
+Elige a un contrincante.<br>
+Tirad los dados a la vez.<br>
+<strong>El que saque menor puntuación, BEBE. 🍺</strong>
+
+</div>
+
+
+<div class="zona-dados">
+
+    <div class="jugador">
+
+        <div class="nombre-jugador">
+            JUGADOR 1
+        </div>
+
+        <div id="dado1" class="dado">
+            ⚀
+        </div>
+
     </div>
 
 
-    <button id="boton" onclick="girarRuleta()">
-        🎰 ¡TIRA DE LA RULETA!
-    </button>
+    <div style="font-size:28px;font-weight:bold;">
+        VS
+    </div>
 
-    <div class="mensaje-perro">
-        El perro no se responsabiliza de las consecuencias.
+
+    <div class="jugador">
+
+        <div class="nombre-jugador">
+            JUGADOR 2
+        </div>
+
+        <div id="dado2" class="dado">
+            ⚀
+        </div>
+
     </div>
 
 </div>
 
 
+<div id="resultado-dados">
+    ¿Quién tendrá que beber? 👀
+</div>
+
+
+<button
+    id="boton-dados"
+    class="boton-principal"
+    onclick="tirarDados()">
+
+    🎲 ¡LANZAR DADOS!
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ========================
+     CRONO
+======================== -->
+
+<section id="crono" class="pantalla">
+
+<div class="contenedor">
+
+<button class="boton-volver"
+        onclick="volverMenu()">
+← Volver al CumpleSamu
+</button>
+
+<h2>⏱️🍺 EL CRONO CERVECERO 🍺⏱️</h2>
+
+
+<div class="instrucciones">
+
+<strong>¿Cómo se juega?</strong><br><br>
+
+Elige a un contrincante.<br>
+El cronómetro empieza en <strong>5 segundos</strong>.<br>
+Intenta pararlo lo más cerca posible de <strong>0.00000</strong>.<br><br>
+
+<strong>El que más cerca se quede de 0 SIN PASARSE gana.</strong>
+
+</div>
+
+
+<div id="displayCrono" class="crono">
+5.00000
+</div>
+
+
+<div id="resultado-crono" class="resultado-crono">
+Pulsa iniciar cuando estés preparado. 👀
+</div>
+
+
+<div class="botones-crono">
+
+<button
+    id="btn-iniciar"
+    class="boton-principal btn-iniciar"
+    onclick="iniciarCrono()">
+
+▶️ INICIAR
+
+</button>
+
+
+<button
+    id="btn-parar"
+    class="boton-principal btn-parar"
+    onclick="pararCrono()"
+    disabled>
+
+🛑 ¡PARA!
+
+</button>
+
+
+<button
+    class="boton-principal btn-reset"
+    onclick="resetCrono()">
+
+↻ REINICIAR
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
 
 <script>
 
+/* ========================================
+   NAVEGACIÓN
+======================================== */
+
+function abrirJuego(id) {
+
+    document
+        .querySelectorAll(".pantalla")
+        .forEach(p => p.classList.remove("activa"));
+
+    document
+        .getElementById(id)
+        .classList.add("activa");
+
+    window.scrollTo(0,0);
+}
+
+
+function volverMenu() {
+
+    document
+        .querySelectorAll(".pantalla")
+        .forEach(p => p.classList.remove("activa"));
+
+    document
+        .getElementById("inicio")
+        .classList.add("activa");
+
+    resetCrono();
+
+    window.scrollTo(0,0);
+}
+
+
+/* ========================================
+   RULETA
+======================================== */
+
 const frases = [
 
-`Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.`,
+"Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
 
-`Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.`,
+"Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
 
-`No dejes para mañana lo que puedas hacer... pasado mañana.`,
+"No dejes para mañana lo que puedas hacer... pasado mañana.",
 
-`Sonríe, te están grabando (es broma, o tal vez no).`,
+"Sonríe, te están grabando (es broma, o tal vez no).",
 
-`La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.`,
+"La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
 
-`Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.`,
+"Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.",
 
-`Si lees esto, pídele una caña a Samu.`,
+"Si lees esto, pídele una caña a Samu.",
 
-`¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.`,
+"¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.",
 
-`Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.`,
+"Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.",
 
-`¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.`,
+"¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.",
 
-`¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.`,
+"¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.",
 
-`Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.`,
+"Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.",
 
-`¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).`,
+"¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).",
 
-`Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).`,
+"Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).",
 
-`Esta cerveza es más artesana que Musart, aprovecha y bebe.`,
+"Esta cerveza es más artesana que Musart, aprovecha y bebe.",
 
-`Elde está triste porque esto no parece una rave, invítale a un chupito.`,
+"Elde está triste porque esto no parece una rave, invítale a un chupito.",
 
-`A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.`,
+"A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.",
 
-`Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.`,
+"Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.",
 
-`Busca a Lucitec, o te hace un baile, o te invita a un chupito.`,
+"Busca a Lucitec, o te hace un baile, o te invita a un chupito.",
 
-`¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!`,
+"¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!",
 
-`Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.`,
+"Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.",
 
-`Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.`,
+"Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.",
 
-`Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.`,
+"Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.",
 
-`¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.`,
+"¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.",
 
-`Si Mario tiene cara seria, le toca pagarte lo que le pidas.`,
+"Si Mario tiene cara seria, le toca pagarte lo que le pidas.",
 
-`Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).`,
+"Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).",
 
-`¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!`,
+"¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!",
 
-`Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!`,
+"Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!",
 
-`¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.`,
+"¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.",
 
-`Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.`,
+"Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.",
 
-`Si te encuentras a menos de 1 metro de un Álvaro, bebes.`,
+"Si te encuentras a menos de 1 metro de un Álvaro, bebes.",
 
-`Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.`,
+"Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.",
 
-`Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.`,
+"Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.",
 
-`¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.`,
+"¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.",
 
-`Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!`,
+"Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!",
 
-`La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!`,
+"La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!",
 
-`Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.`,
+"Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.",
 
-`Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!`
+"Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!"
 
 ];
 
 
-let ultimaFrase = -1;
+/* ========================================
+   SISTEMA ANTI-REPETICIÓN
+   Se guarda en el móvil
+======================================== */
+
+let frasesVistas = [];
+
+try {
+
+    frasesVistas =
+        JSON.parse(
+            localStorage.getItem(
+                "cumplesamu_frases_vistas"
+            )
+        ) || [];
+
+} catch (error) {
+
+    frasesVistas = [];
+
+}
+
+
+function elegirFraseNueva() {
+
+    /*
+    Si cambia el número de frases del código y hay
+    índices antiguos inválidos, los eliminamos.
+    */
+
+    frasesVistas =
+        frasesVistas.filter(
+            indice =>
+                Number.isInteger(indice) &&
+                indice >= 0 &&
+                indice < frases.length
+        );
+
+
+    /*
+    Si ya han salido todas,
+    se empieza una nueva ronda.
+    */
+
+    if (frasesVistas.length >= frases.length) {
+
+        frasesVistas = [];
+
+    }
+
+
+    /*
+    Crear listado de índices todavía disponibles.
+    */
+
+    const disponibles =
+        frases
+        .map((frase, indice) => indice)
+        .filter(
+            indice =>
+                !frasesVistas.includes(indice)
+        );
+
+
+    /*
+    Elegir una al azar.
+    */
+
+    const indiceAleatorio =
+        disponibles[
+            Math.floor(
+                Math.random() *
+                disponibles.length
+            )
+        ];
+
+
+    /*
+    Marcarla como vista.
+    */
+
+    frasesVistas.push(indiceAleatorio);
+
+
+    /*
+    Guardarla en el navegador del móvil.
+    */
+
+    try {
+
+        localStorage.setItem(
+            "cumplesamu_frases_vistas",
+            JSON.stringify(frasesVistas)
+        );
+
+    } catch (error) {
+
+        console.log(
+            "No se pudo guardar el historial."
+        );
+
+    }
+
+
+    return indiceAleatorio;
+}
 
 
 function girarRuleta() {
 
-    const ruleta = document.getElementById("ruleta");
-    const perro = document.getElementById("perro");
-    const cuerda = document.getElementById("cuerda");
-    const burbujas = document.getElementById("burbujas");
-    const frase = document.getElementById("frase-destino");
-    const boton = document.getElementById("boton");
+    const ruleta =
+        document.getElementById("ruletaDisco");
 
+    const perro =
+        document.getElementById("perro");
 
-    /* Evita pulsar varias veces mientras gira */
+    const frase =
+        document.getElementById("frase-destino");
+
+    const boton =
+        document.getElementById("boton-ruleta");
+
 
     boton.disabled = true;
 
 
-    /* Mensaje mientras gira */
+    frase.innerText =
+        "El perro está decidiendo tu destino... 🐶🍺";
 
-    frase.classList.remove("resultado");
-
-    frase.innerText = "El perro está decidiendo tu destino... 🍺🐶";
-
-
-    /* Reiniciar animación */
 
     ruleta.classList.remove("girando");
 
@@ -564,59 +976,423 @@ function girarRuleta() {
     ruleta.classList.add("girando");
 
 
-    /* Animaciones del perro */
-
     perro.classList.add("perro-tirando");
 
-    cuerda.classList.add("cuerda-tirando");
 
-    burbujas.classList.add("burbujas-activas");
+    /*
+    Aquí elegimos una frase
+    que NO haya salido antes
+    en este móvil.
+    */
 
+    const indice =
+        elegirFraseNueva();
 
-    /* Elegir frase evitando repetir inmediatamente */
-
-    let indiceAleatorio;
-
-    do {
-
-        indiceAleatorio = Math.floor(
-            Math.random() * frases.length
-        );
-
-    } while (
-        indiceAleatorio === ultimaFrase &&
-        frases.length > 1
-    );
-
-
-    ultimaFrase = indiceAleatorio;
-
-
-    /* Esperar a que termine la ruleta */
 
     setTimeout(() => {
 
-        perro.classList.remove("perro-tirando");
-
-        cuerda.classList.remove("cuerda-tirando");
-
-        burbujas.classList.remove("burbujas-activas");
+        perro.classList.remove(
+            "perro-tirando"
+        );
 
 
         frase.innerText =
-            "🎉 " + frases[indiceAleatorio];
-
-
-        void frase.offsetWidth;
-
-        frase.classList.add("resultado");
+            "🎉 " + frases[indice];
 
 
         boton.disabled = false;
 
-        boton.innerText = "🍺 ¡OTRA VEZ!";
+
+        boton.innerText =
+            "🍺 ¡OTRA VEZ!";
 
     }, 2600);
+
+}
+
+
+/* ========================================
+   DADOS
+======================================== */
+
+const carasDados = [
+    "⚀",
+    "⚁",
+    "⚂",
+    "⚃",
+    "⚄",
+    "⚅"
+];
+
+
+function tirarDados() {
+
+    const dado1 =
+        document.getElementById("dado1");
+
+    const dado2 =
+        document.getElementById("dado2");
+
+    const resultado =
+        document.getElementById(
+            "resultado-dados"
+        );
+
+    const boton =
+        document.getElementById(
+            "boton-dados"
+        );
+
+
+    boton.disabled = true;
+
+
+    resultado.innerText =
+        "🔥 ¡LOS DADOS ESTÁN ARDIENDO! 🔥";
+
+
+    dado1.classList.add(
+        "dado-rodando"
+    );
+
+    dado2.classList.add(
+        "dado-rodando"
+    );
+
+
+    let animacion =
+        setInterval(() => {
+
+            dado1.innerText =
+                carasDados[
+                    Math.floor(
+                        Math.random() * 6
+                    )
+                ];
+
+            dado2.innerText =
+                carasDados[
+                    Math.floor(
+                        Math.random() * 6
+                    )
+                ];
+
+        }, 100);
+
+
+    setTimeout(() => {
+
+        clearInterval(animacion);
+
+
+        const numero1 =
+            Math.floor(
+                Math.random() * 6
+            ) + 1;
+
+        const numero2 =
+            Math.floor(
+                Math.random() * 6
+            ) + 1;
+
+
+        dado1.innerText =
+            carasDados[
+                numero1 - 1
+            ];
+
+        dado2.innerText =
+            carasDados[
+                numero2 - 1
+            ];
+
+
+        dado1.classList.remove(
+            "dado-rodando"
+        );
+
+        dado2.classList.remove(
+            "dado-rodando"
+        );
+
+
+        if (numero1 < numero2) {
+
+            resultado.innerHTML =
+                `🍺 JUGADOR 1: ${numero1}
+                &nbsp; VS &nbsp;
+                JUGADOR 2: ${numero2}
+                <br><br>
+                <strong>¡JUGADOR 1 BEBE!</strong>`;
+
+        }
+
+        else if (numero2 < numero1) {
+
+            resultado.innerHTML =
+                `JUGADOR 1: ${numero1}
+                &nbsp; VS &nbsp;
+                🍺 JUGADOR 2: ${numero2}
+                <br><br>
+                <strong>¡JUGADOR 2 BEBE!</strong>`;
+
+        }
+
+        else {
+
+            resultado.innerHTML =
+                `😱 ${numero1} - ${numero2}
+                <br><br>
+                <strong>
+                ¡EMPATE! REPETID LA TIRADA.
+                </strong>`;
+
+        }
+
+
+        boton.disabled = false;
+
+
+        boton.innerText =
+            "🎲 ¡OTRA TIRADA!";
+
+    }, 1500);
+
+}
+
+
+/* ========================================
+   CRONO CERVECERO
+======================================== */
+
+let inicioCrono = null;
+
+let intervaloCrono = null;
+
+let cronoActivo = false;
+
+
+function iniciarCrono() {
+
+    if (cronoActivo) return;
+
+
+    cronoActivo = true;
+
+    inicioCrono =
+        performance.now();
+
+
+    document
+        .getElementById("btn-iniciar")
+        .disabled = true;
+
+
+    document
+        .getElementById("btn-parar")
+        .disabled = false;
+
+
+    document
+        .getElementById(
+            "resultado-crono"
+        )
+        .innerText =
+        "¡¡¡AHORA!!! Intenta clavar el 0.00000 👀";
+
+
+    intervaloCrono =
+        setInterval(
+            actualizarCrono,
+            10
+        );
+
+}
+
+
+function actualizarCrono() {
+
+    const ahora =
+        performance.now();
+
+
+    const transcurrido =
+        (ahora - inicioCrono) / 1000;
+
+
+    const restante =
+        5 - transcurrido;
+
+
+    const display =
+        document.getElementById(
+            "displayCrono"
+        );
+
+
+    display.innerText =
+        restante.toFixed(5);
+
+
+    if (restante < 0) {
+
+        display.classList.add(
+            "negativo"
+        );
+
+        display.classList.remove(
+            "cerca"
+        );
+
+    }
+
+    else if (restante < 0.5) {
+
+        display.classList.add(
+            "cerca"
+        );
+
+    }
+
+}
+
+
+function pararCrono() {
+
+    if (!cronoActivo) return;
+
+
+    const ahora =
+        performance.now();
+
+
+    const transcurrido =
+        (ahora - inicioCrono) / 1000;
+
+
+    const restante =
+        5 - transcurrido;
+
+
+    clearInterval(
+        intervaloCrono
+    );
+
+
+    cronoActivo = false;
+
+
+    const display =
+        document.getElementById(
+            "displayCrono"
+        );
+
+
+    display.innerText =
+        restante.toFixed(5);
+
+
+    document
+        .getElementById("btn-parar")
+        .disabled = true;
+
+
+    document
+        .getElementById("btn-iniciar")
+        .disabled = true;
+
+
+    const resultado =
+        document.getElementById(
+            "resultado-crono"
+        );
+
+
+    if (restante < 0) {
+
+        resultado.innerHTML =
+            `💀 <strong>TE HAS PASADO.</strong><br>
+            Has parado en
+            ${restante.toFixed(5)} s`;
+
+    }
+
+    else if (restante < 0.05) {
+
+        resultado.innerHTML =
+            `🤯🔥 <strong>¡CLAVADÍSIMO!</strong><br>
+            ${restante.toFixed(5)}
+            segundos del cero.`;
+
+    }
+
+    else if (restante < 0.20) {
+
+        resultado.innerHTML =
+            `🔥 <strong>¡MUY CERCA!</strong><br>
+            Te has quedado en
+            ${restante.toFixed(5)} s`;
+
+    }
+
+    else {
+
+        resultado.innerHTML =
+            `🍺 Te has quedado en
+            <strong>
+            ${restante.toFixed(5)} s
+            </strong>.<br>
+            Que pruebe tu contrincante.`;
+
+    }
+
+}
+
+
+function resetCrono() {
+
+    clearInterval(
+        intervaloCrono
+    );
+
+
+    cronoActivo = false;
+
+    inicioCrono = null;
+
+
+    const display =
+        document.getElementById(
+            "displayCrono"
+        );
+
+
+    display.innerText =
+        "5.00000";
+
+
+    display.classList.remove(
+        "negativo",
+        "cerca"
+    );
+
+
+    document
+        .getElementById(
+            "resultado-crono"
+        )
+        .innerText =
+        "Pulsa iniciar cuando estés preparado. 👀";
+
+
+    document
+        .getElementById("btn-iniciar")
+        .disabled = false;
+
+
+    document
+        .getElementById("btn-parar")
+        .disabled = true;
 
 }
 
