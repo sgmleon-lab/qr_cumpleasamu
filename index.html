@@ -4,112 +4,623 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumple Samu!</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffeaa7;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
             color: #2d3436;
-            text-align: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             padding: 20px;
+            overflow-x: hidden;
         }
+
         .contenedor {
-            max-width: 600px;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255,255,255,0.96);
+            padding: 30px 20px 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.20);
+            text-align: center;
         }
-        h1 {
-            font-size: 1.8rem;
-            line-height: 1.5;
-            margin-bottom: 35px;
-            min-height: 80px;
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .zona-juego {
+            position: relative;
+            height: 320px;
+            margin-top: 10px;
+        }
+
+        /* -------------------------
+           RULETA
+        ------------------------- */
+
+        .ruleta-container {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+        }
+
+        .flecha {
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            top: -20px;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 35px solid #2d3436;
+        }
+
+        .ruleta {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+
+            border: 9px solid #2d3436;
+
+            background: conic-gradient(
+                #ff7675 0deg 45deg,
+                #74b9ff 45deg 90deg,
+                #ffeaa7 90deg 135deg,
+                #55efc4 135deg 180deg,
+                #a29bfe 180deg 225deg,
+                #fd79a8 225deg 270deg,
+                #fab1a0 270deg 315deg,
+                #81ecec 315deg 360deg
+            );
+
+            box-shadow:
+                0 10px 20px rgba(0,0,0,0.25),
+                inset 0 0 0 5px white;
+
+            position: relative;
+        }
+
+        .centro-ruleta {
+            position: absolute;
+            width: 62px;
+            height: 62px;
+            background: white;
+            border: 6px solid #2d3436;
+            border-radius: 50%;
+
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            font-size: 30px;
+            z-index: 3;
         }
-        button {
-            background-color: #ff7675;
+
+        .interrogantes {
+            position: absolute;
+            inset: 0;
+            font-size: 26px;
+            font-weight: bold;
             color: white;
+            text-shadow: 2px 2px 3px rgba(0,0,0,.35);
+        }
+
+        .interrogantes span {
+            position: absolute;
+        }
+
+        .q1 { top: 15px; left: 105px; }
+        .q2 { top: 50px; right: 25px; }
+        .q3 { bottom: 50px; right: 25px; }
+        .q4 { bottom: 15px; left: 105px; }
+        .q5 { bottom: 50px; left: 25px; }
+        .q6 { top: 50px; left: 25px; }
+
+        /* -------------------------
+           PERRO BORRACHO
+        ------------------------- */
+
+        .perro {
+            position: absolute;
+            left: calc(50% - 205px);
+            bottom: 0;
+
+            font-size: 85px;
+
+            transform-origin: bottom center;
+        }
+
+        .cerveza {
+            position: absolute;
+            left: calc(50% - 145px);
+            bottom: 5px;
+
+            font-size: 46px;
+            transform: rotate(-20deg);
+        }
+
+        .burbujas {
+            position: absolute;
+            left: calc(50% - 175px);
+            bottom: 95px;
+
+            font-size: 26px;
+            opacity: 0;
+        }
+
+        /* cuerda del perro a la ruleta */
+
+        .cuerda {
+            position: absolute;
+            left: calc(50% - 135px);
+            bottom: 80px;
+
+            width: 115px;
+            height: 5px;
+
+            background: #795548;
+            border-radius: 5px;
+
+            transform: rotate(-20deg);
+            transform-origin: left center;
+        }
+
+        /* -------------------------
+           ANIMACIONES
+        ------------------------- */
+
+        .girando {
+            animation: girarRuleta 2.6s cubic-bezier(.15,.65,.15,1);
+        }
+
+        @keyframes girarRuleta {
+
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(1800deg);
+            }
+        }
+
+        .perro-tirando {
+            animation: perroBorracho .45s ease-in-out infinite alternate;
+        }
+
+        @keyframes perroBorracho {
+
+            0% {
+                transform: rotate(-12deg) translateX(-5px);
+            }
+
+            100% {
+                transform: rotate(13deg) translateX(8px);
+            }
+        }
+
+        .cuerda-tirando {
+            animation: tirarCuerda .45s ease-in-out infinite alternate;
+        }
+
+        @keyframes tirarCuerda {
+
+            0% {
+                transform: rotate(-20deg) scaleX(1);
+            }
+
+            100% {
+                transform: rotate(-15deg) scaleX(.82);
+            }
+        }
+
+        .burbujas-activas {
+            animation: burbujas 1s infinite;
+        }
+
+        @keyframes burbujas {
+
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        /* -------------------------
+           FRASE
+        ------------------------- */
+
+        #frase-destino {
+            margin: 20px auto 25px;
+            padding: 20px;
+
+            min-height: 100px;
+
+            background: #f8f9fa;
+            border-radius: 15px;
+
+            font-size: 1.25rem;
+            line-height: 1.45;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: inset 0 0 10px rgba(0,0,0,.07);
+        }
+
+        .resultado {
+            animation: aparecer .5s ease;
+        }
+
+        @keyframes aparecer {
+
+            from {
+                transform: scale(.7) rotate(-2deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* -------------------------
+           BOTÓN
+        ------------------------- */
+
+        button {
+            background: #ff7675;
+            color: white;
+
             border: none;
-            padding: 15px 30px;
+            padding: 16px 30px;
+
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 12px;
+
+            border-radius: 14px;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+            box-shadow: 0 5px 10px rgba(0,0,0,.15);
+
+            transition: .2s;
         }
+
         button:hover {
-            background-color: #d63031;
+            background: #d63031;
             transform: scale(1.05);
         }
-        button:active {
-            transform: scale(0.98);
+
+        button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
         }
+
+        .mensaje-perro {
+            font-size: .9rem;
+            margin-top: 12px;
+            opacity: .7;
+        }
+
+
+        /* MÓVIL */
+
+        @media (max-width: 550px) {
+
+            .contenedor {
+                padding: 25px 12px;
+            }
+
+            .zona-juego {
+                height: 280px;
+            }
+
+            .ruleta {
+                width: 190px;
+                height: 190px;
+            }
+
+            .perro {
+                font-size: 68px;
+                left: calc(50% - 170px);
+            }
+
+            .cerveza {
+                font-size: 38px;
+                left: calc(50% - 115px);
+            }
+
+            .cuerda {
+                left: calc(50% - 110px);
+                width: 90px;
+            }
+
+            .q1,
+            .q4 {
+                left: 86px;
+            }
+
+            #frase-destino {
+                font-size: 1.05rem;
+            }
+        }
+
     </style>
 </head>
+
+
 <body>
 
-    <div class="contenedor">
-        <h1 id="frase-destino">Cargando tu juego... 🎲</h1>
-        <button onclick="mostrarFraseAleatoria()">¡Probar mi suerte! 🍻</button>
+<div class="contenedor">
+
+    <h2>🐶 LA RULETA DEL PERRO BORRACHO 🍺</h2>
+
+    <div class="zona-juego">
+
+        <div id="perro" class="perro">
+            🐶
+        </div>
+
+        <div class="cerveza">
+            🍺
+        </div>
+
+        <div id="burbujas" class="burbujas">
+            🫧💫
+        </div>
+
+        <div id="cuerda" class="cuerda"></div>
+
+
+        <div class="ruleta-container">
+
+            <div class="flecha"></div>
+
+            <div id="ruleta" class="ruleta">
+
+                <div class="interrogantes">
+                    <span class="q1">?</span>
+                    <span class="q2">?</span>
+                    <span class="q3">?</span>
+                    <span class="q4">?</span>
+                    <span class="q5">?</span>
+                    <span class="q6">?</span>
+                </div>
+
+                <div class="centro-ruleta">
+                    🍻
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <script>
-        const frases = [
-            "Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
-            "Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
-            "No dejes para mañana lo que puedas hacer... pasado mañana.",
-            "Sonríe, te están grabando (es broma, o tal vez no).",
-            "La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
-            "Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.",
-            "Si lees esto, pídele una caña a Samu.",
-            "¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.",
-            "Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.",
-            "¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.",
-            "¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.",
-            "Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.",
-            "¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).",
-            "Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).",
-            "Esta cerveza es más artesana que Musart, aprovecha y bebe.",
-            "Elde está triste porque esto no parece una rave, invítale a un chupito.",
-            "A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.",
-            "Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.",
-            "Busca a Lucitec, o te hace un baile, o te invita a un chupito.",
-            "¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!", 
-            "Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.",
-            "Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.",
-            "Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.",
-            "¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.",
-            "Si Mario tiene cara seria, le toca pagarte lo que le pidas.",
-            "Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).",
-            "¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!",
-            "Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!",
-            "¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.",
-            "Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.",
-            "Si te encuentras a menos de 1 metro de un Álvaro, bebes.",
-            "Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.",
-            "Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.",
-            "¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.",
-            "Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!",
-            "La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!",
-            "Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.",
-            "Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!"
-        ];
 
-        function mostrarFraseAleatoria() {
-            const indiceAleatorio = Math.floor(Math.random() * frases.length);
-            document.getElementById("frase-destino").innerText = frases[indiceAleatorio];
-        }
+    <div id="frase-destino">
+        El perro está preparado... más o menos. 🍺
+    </div>
 
-        window.onload = mostrarFraseAleatoria;
-    </script>
+
+    <button id="boton" onclick="girarRuleta()">
+        🎰 ¡TIRA DE LA RULETA!
+    </button>
+
+    <div class="mensaje-perro">
+        El perro no se responsabiliza de las consecuencias.
+    </div>
+
+</div>
+
+
+
+<script>
+
+const frases = [
+
+`Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.`,
+
+`Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.`,
+
+`No dejes para mañana lo que puedas hacer... pasado mañana.`,
+
+`Sonríe, te están grabando (es broma, o tal vez no).`,
+
+`La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.`,
+
+`Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.`,
+
+`Si lees esto, pídele una caña a Samu.`,
+
+`¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.`,
+
+`Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.`,
+
+`¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.`,
+
+`¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.`,
+
+`Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.`,
+
+`¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).`,
+
+`Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).`,
+
+`Esta cerveza es más artesana que Musart, aprovecha y bebe.`,
+
+`Elde está triste porque esto no parece una rave, invítale a un chupito.`,
+
+`A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.`,
+
+`Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.`,
+
+`Busca a Lucitec, o te hace un baile, o te invita a un chupito.`,
+
+`¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!`,
+
+`Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.`,
+
+`Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.`,
+
+`Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.`,
+
+`¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.`,
+
+`Si Mario tiene cara seria, le toca pagarte lo que le pidas.`,
+
+`Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).`,
+
+`¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!`,
+
+`Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!`,
+
+`¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.`,
+
+`Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.`,
+
+`Si te encuentras a menos de 1 metro de un Álvaro, bebes.`,
+
+`Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.`,
+
+`Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.`,
+
+`¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.`,
+
+`Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!`,
+
+`La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!`,
+
+`Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.`,
+
+`Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!`
+
+];
+
+
+let ultimaFrase = -1;
+
+
+function girarRuleta() {
+
+    const ruleta = document.getElementById("ruleta");
+    const perro = document.getElementById("perro");
+    const cuerda = document.getElementById("cuerda");
+    const burbujas = document.getElementById("burbujas");
+    const frase = document.getElementById("frase-destino");
+    const boton = document.getElementById("boton");
+
+
+    /* Evita pulsar varias veces mientras gira */
+
+    boton.disabled = true;
+
+
+    /* Mensaje mientras gira */
+
+    frase.classList.remove("resultado");
+
+    frase.innerText = "El perro está decidiendo tu destino... 🍺🐶";
+
+
+    /* Reiniciar animación */
+
+    ruleta.classList.remove("girando");
+
+    void ruleta.offsetWidth;
+
+    ruleta.classList.add("girando");
+
+
+    /* Animaciones del perro */
+
+    perro.classList.add("perro-tirando");
+
+    cuerda.classList.add("cuerda-tirando");
+
+    burbujas.classList.add("burbujas-activas");
+
+
+    /* Elegir frase evitando repetir inmediatamente */
+
+    let indiceAleatorio;
+
+    do {
+
+        indiceAleatorio = Math.floor(
+            Math.random() * frases.length
+        );
+
+    } while (
+        indiceAleatorio === ultimaFrase &&
+        frases.length > 1
+    );
+
+
+    ultimaFrase = indiceAleatorio;
+
+
+    /* Esperar a que termine la ruleta */
+
+    setTimeout(() => {
+
+        perro.classList.remove("perro-tirando");
+
+        cuerda.classList.remove("cuerda-tirando");
+
+        burbujas.classList.remove("burbujas-activas");
+
+
+        frase.innerText =
+            "🎉 " + frases[indiceAleatorio];
+
+
+        void frase.offsetWidth;
+
+        frase.classList.add("resultado");
+
+
+        boton.disabled = false;
+
+        boton.innerText = "🍺 ¡OTRA VEZ!";
+
+    }, 2600);
+
+}
+
+</script>
 
 </body>
 </html>
