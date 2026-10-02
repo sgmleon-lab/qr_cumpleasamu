@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frase del día</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .contenedor {
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <h1 id="frase-destino">Cargando tu suerte...</h1>
+    </div>
+
+    <script>
+        // ESCRIBE AQUÍ TODAS LAS FRASES QUE QUIERAS (Sepáralas por comas)
+        const frases = [
+            "Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
+            "Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
+            "No dejes para mañana lo que puedas hacer... pasado mañana.",
+            "Sonríe, te están grabando (es broma, o tal vez no).",
+            "La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
+            "Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero."
+        ];
+
+        // Función que elige una frase al azar de la lista
+        function mostrarFraseAleatoria() {
+            const indiceAleatorio = Math.floor(Math.random() * frases.length);
+            document.getElementById("frase-destino").innerText = frases[indiceAleatorio];
+        }
+
+        // Se ejecuta automáticamente al abrir la página
+        window.onload = mostrarFraseAleatoria;
+    </script>
+
+</body>
+</html>
