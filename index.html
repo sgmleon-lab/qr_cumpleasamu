@@ -57,7 +57,7 @@ h2 {
 }
 
 /* =====================
-   MENÚ
+   BOTONES Y MENÚ
 ===================== */
 
 .menu-juegos {
@@ -120,7 +120,7 @@ h2 {
 }
 
 .boton-principal:disabled {
-    opacity: .6;
+    opacity: .55;
     cursor: default;
     transform: none;
 }
@@ -255,7 +255,6 @@ h2 {
     margin: 15px 0 22px;
     min-height: 100px;
     padding: 18px;
-
     background: #f8f9fa;
     border-radius: 15px;
 
@@ -275,23 +274,13 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 25px;
     margin: 30px 0;
-}
-
-.jugador {
-    flex: 1;
-}
-
-.nombre-jugador {
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .dado {
     width: 125px;
     height: 125px;
-    margin: auto;
 
     background: white;
     border: 5px solid #2d3436;
@@ -327,15 +316,9 @@ h2 {
 
 #resultado-dados {
     margin: 25px 0;
-    min-height: 65px;
-    font-size: 1.25rem;
-    font-weight: bold;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 15px;
+    min-height: 90px;
+    font-size: 1.2rem;
+    padding: 18px;
     background: #f5f6fa;
     border-radius: 15px;
 }
@@ -391,6 +374,91 @@ h2 {
 }
 
 /* =====================
+   BARAJA
+===================== */
+
+.mesa-cartas {
+    margin: 25px 0;
+}
+
+.carta {
+    width: 150px;
+    height: 210px;
+    background: white;
+    margin: 20px auto;
+
+    border: 4px solid #2d3436;
+    border-radius: 15px;
+
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.carta.roja {
+    color: #d63031;
+}
+
+.carta.negra {
+    color: #2d3436;
+}
+
+.palo-carta {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.botones-baraja {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.boton-carta {
+    border: none;
+    border-radius: 13px;
+    padding: 15px 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.mayor {
+    background: #00b894;
+}
+
+.igual {
+    background: #6c5ce7;
+}
+
+.menor {
+    background: #0984e3;
+}
+
+.estado-baraja {
+    background: #f5f6fa;
+    border-radius: 15px;
+    padding: 17px;
+    min-height: 85px;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+.tragos {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* =====================
    MÓVIL
 ===================== */
 
@@ -437,122 +505,163 @@ h2 {
         left: calc(50% - 108px);
         width: 90px;
     }
+
+    .carta {
+        width: 130px;
+        height: 185px;
+    }
+
+    .botones-baraja {
+        grid-template-columns: 1fr;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- ========================
-     MENÚ
-======================== -->
+<!-- ====================================
+     MENÚ PRINCIPAL
+==================================== -->
 
 <section id="inicio" class="pantalla activa">
 
 <div class="contenedor">
 
-    <div style="font-size:65px;">🍻🎂🍻</div>
+<div style="font-size:65px;">
+🍻🎂🍻
+</div>
 
-    <h1>¡BIENVENIDO AL CUMPLESAMU!</h1>
+<h1>¡BIENVENIDO AL CUMPLESAMU!</h1>
 
-    <div class="subtitulo">
-        Elige sabiamente. O no. Probablemente ya sea demasiado tarde.
-    </div>
-
-    <div class="menu-juegos">
-
-        <button class="tarjeta-juego"
-                onclick="abrirJuego('ruleta')">
-
-            <span class="icono-menu">🐶🎰</span>
-
-            LA RULETA DEL PERRO BORRACHO
-
-        </button>
+<div class="subtitulo">
+Elige sabiamente. O no. Probablemente ya sea demasiado tarde.
+</div>
 
 
-        <button class="tarjeta-juego"
-                onclick="abrirJuego('dados')">
+<div class="menu-juegos">
 
-            <span class="icono-menu">🎲🔥</span>
+<button class="tarjeta-juego"
+onclick="abrirJuego('ruleta')">
 
-            LOS DADOS CALIENTES
+<span class="icono-menu">
+🐶🎰
+</span>
 
-        </button>
+LA RULETA DEL PERRO BORRACHO
+
+</button>
 
 
-        <button class="tarjeta-juego"
-                onclick="abrirJuego('crono')">
+<button class="tarjeta-juego"
+onclick="abrirJuego('dados')">
 
-            <span class="icono-menu">⏱️🍺</span>
+<span class="icono-menu">
+🎲🔥
+</span>
 
-            EL CRONO CERVECERO
+LOS DADOS CALIENTES
 
-        </button>
+</button>
 
-    </div>
+
+<button class="tarjeta-juego"
+onclick="abrirJuego('crono')">
+
+<span class="icono-menu">
+⏱️🍺
+</span>
+
+EL CRONO CERVECERO
+
+</button>
+
+
+<button class="tarjeta-juego"
+onclick="abrirJuego('baraja')">
+
+<span class="icono-menu">
+🃏🍻
+</span>
+
+MAYOR, MENOR O IGUAL
+
+</button>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- ========================
+<!-- ====================================
      RULETA
-======================== -->
+==================================== -->
 
 <section id="ruleta" class="pantalla">
 
 <div class="contenedor">
 
 <button class="boton-volver"
-        onclick="volverMenu()">
+onclick="volverMenu()">
+
 ← Volver al CumpleSamu
+
 </button>
 
-<h2>🐶 LA RULETA DEL PERRO BORRACHO 🍺</h2>
+
+<h2>
+🐶 LA RULETA DEL PERRO BORRACHO 🍺
+</h2>
+
 
 <div class="zona-juego">
 
-    <div id="perro" class="perro">
-        🐶
-    </div>
+<div id="perro" class="perro">
+🐶
+</div>
 
-    <div class="cerveza">
-        🍺
-    </div>
+<div class="cerveza">
+🍺
+</div>
 
-    <div class="cuerda"></div>
+<div class="cuerda"></div>
 
-    <div class="ruleta-container">
 
-        <div class="flecha"></div>
+<div class="ruleta-container">
 
-        <div id="ruletaDisco" class="ruleta">
+<div class="flecha"></div>
 
-            <div class="centro-ruleta">
-                🍻
-            </div>
+<div id="ruletaDisco"
+class="ruleta">
 
-        </div>
+<div class="centro-ruleta">
+🍻
+</div>
 
-    </div>
+</div>
+
+</div>
 
 </div>
 
 
 <div id="frase-destino">
-    El perro está preparado... más o menos. 🍺
+
+El perro está preparado... más o menos. 🍺
+
 </div>
 
 
 <button
-    id="boton-ruleta"
-    class="boton-principal"
-    onclick="girarRuleta()">
+id="boton-ruleta"
+class="boton-principal"
+onclick="girarRuleta()">
 
-    🎰 ¡TIRA DE LA RULETA!
+🎰 ¡TIRA DE LA RULETA!
 
 </button>
 
@@ -561,78 +670,95 @@ h2 {
 </section>
 
 
-<!-- ========================
+<!-- ====================================
      DADOS
-======================== -->
+==================================== -->
 
 <section id="dados" class="pantalla">
 
 <div class="contenedor">
 
+
 <button class="boton-volver"
-        onclick="volverMenu()">
+onclick="volverMenu()">
+
 ← Volver al CumpleSamu
+
 </button>
 
-<h2>🎲🔥 LOS DADOS CALIENTES 🔥🎲</h2>
+
+<h2>
+🎲🔥 LOS DADOS CALIENTES 🔥🎲
+</h2>
+
 
 <div class="instrucciones">
 
-<strong>¿Cómo se juega?</strong><br><br>
+<strong>¿Cómo se juega?</strong>
 
-Elige a un contrincante.<br>
-Tirad los dados a la vez.<br>
-<strong>El que saque menor puntuación, BEBE. 🍺</strong>
+<br><br>
+
+Elige a un contrincante.
+
+<br>
+
+Cada uno tira los dados desde su móvil.
+
+<br>
+
+Comparad la suma de los dos dados.
+
+<br><br>
+
+<strong>
+El que saque MENOR puntuación, BEBE. 🍺
+</strong>
+
+<br><br>
+
+⚠️ <strong>
+REGLA DE LOS DOBLES:
+</strong>
+
+<br>
+
+Si los dos dados muestran el mismo número,
+
+<strong>
+BEBES automáticamente,
+</strong>
+
+independientemente de la puntuación.
 
 </div>
 
 
 <div class="zona-dados">
 
-    <div class="jugador">
+<div id="dado1" class="dado">
+⚀
+</div>
 
-        <div class="nombre-jugador">
-            JUGADOR 1
-        </div>
-
-        <div id="dado1" class="dado">
-            ⚀
-        </div>
-
-    </div>
-
-
-    <div style="font-size:28px;font-weight:bold;">
-        VS
-    </div>
-
-
-    <div class="jugador">
-
-        <div class="nombre-jugador">
-            JUGADOR 2
-        </div>
-
-        <div id="dado2" class="dado">
-            ⚀
-        </div>
-
-    </div>
+<div id="dado2" class="dado">
+⚀
+</div>
 
 </div>
 
 
 <div id="resultado-dados">
-    ¿Quién tendrá que beber? 👀
+
+🎲 Tu puntuación aparecerá aquí
+
 </div>
 
 
 <button
-    id="boton-dados"
-    class="boton-principal"
-    onclick="tirarDados()">
+id="boton-dados"
+class="boton-principal"
+onclick="tirarDados()">
 
-    🎲 ¡LANZAR DADOS!
+🎲 ¡LANZAR DADOS!
 
 </button>
 
@@ -641,51 +767,77 @@ Tirad los dados a la vez.<br>
 </section>
 
 
-<!-- ========================
+<!-- ====================================
      CRONO
-======================== -->
+==================================== -->
 
 <section id="crono" class="pantalla">
 
 <div class="contenedor">
 
 <button class="boton-volver"
-        onclick="volverMenu()">
+onclick="volverMenu()">
+
 ← Volver al CumpleSamu
+
 </button>
 
-<h2>⏱️🍺 EL CRONO CERVECERO 🍺⏱️</h2>
+
+<h2>
+⏱️🍺 EL CRONO CERVECERO 🍺⏱️
+</h2>
 
 
 <div class="instrucciones">
 
-<strong>¿Cómo se juega?</strong><br><br>
+<strong>¿Cómo se juega?</strong>
 
-Elige a un contrincante.<br>
-El cronómetro empieza en <strong>5 segundos</strong>.<br>
-Intenta pararlo lo más cerca posible de <strong>0.00000</strong>.<br><br>
+<br><br>
 
-<strong>El que más cerca se quede de 0 SIN PASARSE gana.</strong>
+Elige a un contrincante.
+
+<br>
+
+El cronómetro empieza en
+<strong>5 segundos.</strong>
+
+<br>
+
+Intenta pararlo lo más cerca posible de
+
+<strong>0.00000.</strong>
+
+<br><br>
+
+<strong>
+El que más cerca se quede de 0 SIN PASARSE gana.
+</strong>
 
 </div>
 
 
-<div id="displayCrono" class="crono">
+<div id="displayCrono"
+class="crono">
+
 5.00000
+
 </div>
 
 
-<div id="resultado-crono" class="resultado-crono">
+<div id="resultado-crono"
+class="resultado-crono">
+
 Pulsa iniciar cuando estés preparado. 👀
+
 </div>
 
 
 <div class="botones-crono">
 
 <button
-    id="btn-iniciar"
-    class="boton-principal btn-iniciar"
-    onclick="iniciarCrono()">
+id="btn-iniciar"
+class="boton-principal btn-iniciar"
+onclick="iniciarCrono()">
 
 ▶️ INICIAR
 
@@ -693,10 +845,10 @@ Pulsa iniciar cuando estés preparado. 👀
 
 
 <button
-    id="btn-parar"
-    class="boton-principal btn-parar"
-    onclick="pararCrono()"
-    disabled>
+id="btn-parar"
+class="boton-principal btn-parar"
+onclick="pararCrono()"
+disabled>
 
 🛑 ¡PARA!
 
@@ -704,14 +856,168 @@ Pulsa iniciar cuando estés preparado. 👀
 
 
 <button
-    class="boton-principal btn-reset"
-    onclick="resetCrono()">
+class="boton-principal btn-reset"
+onclick="resetCrono()">
 
 ↻ REINICIAR
 
 </button>
 
 </div>
+
+</div>
+
+</section>
+
+
+<!-- ====================================
+     BARAJA
+==================================== -->
+
+<section id="baraja" class="pantalla">
+
+<div class="contenedor">
+
+
+<button class="boton-volver"
+onclick="volverMenu()">
+
+← Volver al CumpleSamu
+
+</button>
+
+
+<h2>
+🃏🍻 MAYOR, MENOR O IGUAL 🍻🃏
+</h2>
+
+
+<div class="instrucciones">
+
+<strong>¿Cómo se juega?</strong>
+
+<br><br>
+
+Mira la carta.
+
+<br>
+
+Decide si la siguiente será
+
+<strong>MAYOR, MENOR o IGUAL.</strong>
+
+<br><br>
+
+Cada vez que aciertas,
+
+<strong>acumulas 1 trago.</strong>
+
+<br>
+
+Puedes seguir arriesgando.
+
+<br><br>
+
+Si fallas...
+
+<br>
+
+<strong>
+🍺 TE BEBES TODOS LOS TRAGOS ACUMULADOS.
+</strong>
+
+<br><br>
+
+El As es la carta más alta.
+
+</div>
+
+
+<div class="tragos">
+
+🍺 Tragos acumulados:
+<span id="tragosAcumulados">
+0
+</span>
+
+</div>
+
+
+<div class="mesa-cartas">
+
+<div id="cartaActual"
+class="carta negra">
+
+<div id="valorCarta">
+?
+</div>
+
+<div id="paloCarta"
+class="palo-carta">
+🂠
+</div>
+
+</div>
+
+</div>
+
+
+<div class="botones-baraja">
+
+<button
+id="btn-menor"
+class="boton-carta menor"
+onclick="jugarCarta('menor')"
+disabled>
+
+⬇️ MENOR
+
+</button>
+
+
+<button
+id="btn-igual"
+class="boton-carta igual"
+onclick="jugarCarta('igual')"
+disabled>
+
+🟰 IGUAL
+
+</button>
+
+
+<button
+id="btn-mayor"
+class="boton-carta mayor"
+onclick="jugarCarta('mayor')"
+disabled>
+
+⬆️ MAYOR
+
+</button>
+
+</div>
+
+
+<div id="estado-baraja"
+class="estado-baraja">
+
+Pulsa empezar para sacar la primera carta.
+
+</div>
+
+
+<br>
+
+
+<button
+id="btn-empezar-baraja"
+class="boton-principal"
+onclick="iniciarBaraja()">
+
+🃏 EMPEZAR PARTIDA
+
+</button>
 
 </div>
 
@@ -728,13 +1034,16 @@ function abrirJuego(id) {
 
     document
         .querySelectorAll(".pantalla")
-        .forEach(p => p.classList.remove("activa"));
+        .forEach(
+            p => p.classList.remove("activa")
+        );
 
     document
         .getElementById(id)
         .classList.add("activa");
 
     window.scrollTo(0,0);
+
 }
 
 
@@ -742,7 +1051,9 @@ function volverMenu() {
 
     document
         .querySelectorAll(".pantalla")
-        .forEach(p => p.classList.remove("activa"));
+        .forEach(
+            p => p.classList.remove("activa")
+        );
 
     document
         .getElementById("inicio")
@@ -751,6 +1062,7 @@ function volverMenu() {
     resetCrono();
 
     window.scrollTo(0,0);
+
 }
 
 
@@ -839,10 +1151,7 @@ const frases = [
 ];
 
 
-/* ========================================
-   SISTEMA ANTI-REPETICIÓN
-   Se guarda en el móvil
-======================================== */
+/* ANTI REPETICIÓN */
 
 let frasesVistas = [];
 
@@ -855,7 +1164,7 @@ try {
             )
         ) || [];
 
-} catch (error) {
+} catch(error) {
 
     frasesVistas = [];
 
@@ -863,11 +1172,6 @@ try {
 
 
 function elegirFraseNueva() {
-
-    /*
-    Si cambia el número de frases del código y hay
-    índices antiguos inválidos, los eliminamos.
-    */
 
     frasesVistas =
         frasesVistas.filter(
@@ -878,36 +1182,29 @@ function elegirFraseNueva() {
         );
 
 
-    /*
-    Si ya han salido todas,
-    se empieza una nueva ronda.
-    */
-
-    if (frasesVistas.length >= frases.length) {
+    if (
+        frasesVistas.length >=
+        frases.length
+    ) {
 
         frasesVistas = [];
 
     }
 
 
-    /*
-    Crear listado de índices todavía disponibles.
-    */
-
     const disponibles =
         frases
-        .map((frase, indice) => indice)
+        .map(
+            (frase, indice) =>
+                indice
+        )
         .filter(
             indice =>
                 !frasesVistas.includes(indice)
         );
 
 
-    /*
-    Elegir una al azar.
-    */
-
-    const indiceAleatorio =
+    const indice =
         disponibles[
             Math.floor(
                 Math.random() *
@@ -916,16 +1213,8 @@ function elegirFraseNueva() {
         ];
 
 
-    /*
-    Marcarla como vista.
-    */
+    frasesVistas.push(indice);
 
-    frasesVistas.push(indiceAleatorio);
-
-
-    /*
-    Guardarla en el navegador del móvil.
-    */
 
     try {
 
@@ -934,32 +1223,35 @@ function elegirFraseNueva() {
             JSON.stringify(frasesVistas)
         );
 
-    } catch (error) {
-
-        console.log(
-            "No se pudo guardar el historial."
-        );
-
-    }
+    } catch(error) {}
 
 
-    return indiceAleatorio;
+    return indice;
+
 }
 
 
 function girarRuleta() {
 
     const ruleta =
-        document.getElementById("ruletaDisco");
+        document.getElementById(
+            "ruletaDisco"
+        );
 
     const perro =
-        document.getElementById("perro");
+        document.getElementById(
+            "perro"
+        );
 
     const frase =
-        document.getElementById("frase-destino");
+        document.getElementById(
+            "frase-destino"
+        );
 
     const boton =
-        document.getElementById("boton-ruleta");
+        document.getElementById(
+            "boton-ruleta"
+        );
 
 
     boton.disabled = true;
@@ -969,21 +1261,21 @@ function girarRuleta() {
         "El perro está decidiendo tu destino... 🐶🍺";
 
 
-    ruleta.classList.remove("girando");
+    ruleta.classList.remove(
+        "girando"
+    );
 
     void ruleta.offsetWidth;
 
-    ruleta.classList.add("girando");
+    ruleta.classList.add(
+        "girando"
+    );
 
 
-    perro.classList.add("perro-tirando");
+    perro.classList.add(
+        "perro-tirando"
+    );
 
-
-    /*
-    Aquí elegimos una frase
-    que NO haya salido antes
-    en este móvil.
-    */
 
     const indice =
         elegirFraseNueva();
@@ -995,13 +1287,11 @@ function girarRuleta() {
             "perro-tirando"
         );
 
-
         frase.innerText =
-            "🎉 " + frases[indice];
-
+            "🎉 " +
+            frases[indice];
 
         boton.disabled = false;
-
 
         boton.innerText =
             "🍺 ¡OTRA VEZ!";
@@ -1028,10 +1318,14 @@ const carasDados = [
 function tirarDados() {
 
     const dado1 =
-        document.getElementById("dado1");
+        document.getElementById(
+            "dado1"
+        );
 
     const dado2 =
-        document.getElementById("dado2");
+        document.getElementById(
+            "dado2"
+        );
 
     const resultado =
         document.getElementById(
@@ -1082,7 +1376,9 @@ function tirarDados() {
 
     setTimeout(() => {
 
-        clearInterval(animacion);
+        clearInterval(
+            animacion
+        );
 
 
         const numero1 =
@@ -1090,10 +1386,15 @@ function tirarDados() {
                 Math.random() * 6
             ) + 1;
 
+
         const numero2 =
             Math.floor(
                 Math.random() * 6
             ) + 1;
+
+
+        const suma =
+            numero1 + numero2;
 
 
         dado1.innerText =
@@ -1116,36 +1417,64 @@ function tirarDados() {
         );
 
 
-        if (numero1 < numero2) {
+        /*
+        REGLA ESPECIAL DOBLES
+        */
+
+        if (
+            numero1 === numero2
+        ) {
 
             resultado.innerHTML =
-                `🍺 JUGADOR 1: ${numero1}
-                &nbsp; VS &nbsp;
-                JUGADOR 2: ${numero2}
+                `
+                🔥🔥 <strong>¡DOBLES!</strong> 🔥🔥
+
                 <br><br>
-                <strong>¡JUGADOR 1 BEBE!</strong>`;
 
-        }
+                Has sacado
 
-        else if (numero2 < numero1) {
-
-            resultado.innerHTML =
-                `JUGADOR 1: ${numero1}
-                &nbsp; VS &nbsp;
-                🍺 JUGADOR 2: ${numero2}
-                <br><br>
-                <strong>¡JUGADOR 2 BEBE!</strong>`;
-
-        }
-
-        else {
-
-            resultado.innerHTML =
-                `😱 ${numero1} - ${numero2}
-                <br><br>
                 <strong>
-                ¡EMPATE! REPETID LA TIRADA.
-                </strong>`;
+                ${numero1} + ${numero2} = ${suma}
+                </strong>
+
+                <br><br>
+
+                Da igual la puntuación...
+
+                <br>
+
+                🍺 <strong>¡BEBES!</strong> 🍺
+                `;
+
+        } else {
+
+            resultado.innerHTML =
+                `
+                Has sacado
+
+                <strong>
+                ${numero1} + ${numero2}
+                </strong>
+
+                <br><br>
+
+                <span style="
+                    font-size:2.6rem;
+                    color:#d63031;
+                    font-weight:bold;
+                ">
+                ${suma}
+                </span>
+
+                <br>
+
+                <strong>PUNTOS</strong>
+
+                <br><br>
+
+                📱 Compara tu puntuación
+                con la de tu contrincante.
+                `;
 
         }
 
@@ -1154,7 +1483,7 @@ function tirarDados() {
 
 
         boton.innerText =
-            "🎲 ¡OTRA TIRADA!";
+            "🎲 ¡VOLVER A TIRAR!";
 
     }, 1500);
 
@@ -1162,7 +1491,7 @@ function tirarDados() {
 
 
 /* ========================================
-   CRONO CERVECERO
+   CRONO
 ======================================== */
 
 let inicioCrono = null;
@@ -1174,22 +1503,29 @@ let cronoActivo = false;
 
 function iniciarCrono() {
 
-    if (cronoActivo) return;
+    if (
+        cronoActivo
+    ) return;
 
 
     cronoActivo = true;
+
 
     inicioCrono =
         performance.now();
 
 
     document
-        .getElementById("btn-iniciar")
+        .getElementById(
+            "btn-iniciar"
+        )
         .disabled = true;
 
 
     document
-        .getElementById("btn-parar")
+        .getElementById(
+            "btn-parar"
+        )
         .disabled = false;
 
 
@@ -1217,7 +1553,8 @@ function actualizarCrono() {
 
 
     const transcurrido =
-        (ahora - inicioCrono) / 1000;
+        (ahora - inicioCrono) /
+        1000;
 
 
     const restante =
@@ -1234,7 +1571,9 @@ function actualizarCrono() {
         restante.toFixed(5);
 
 
-    if (restante < 0) {
+    if (
+        restante < 0
+    ) {
 
         display.classList.add(
             "negativo"
@@ -1246,7 +1585,9 @@ function actualizarCrono() {
 
     }
 
-    else if (restante < 0.5) {
+    else if (
+        restante < 0.5
+    ) {
 
         display.classList.add(
             "cerca"
@@ -1259,7 +1600,9 @@ function actualizarCrono() {
 
 function pararCrono() {
 
-    if (!cronoActivo) return;
+    if (
+        !cronoActivo
+    ) return;
 
 
     const ahora =
@@ -1267,7 +1610,8 @@ function pararCrono() {
 
 
     const transcurrido =
-        (ahora - inicioCrono) / 1000;
+        (ahora - inicioCrono) /
+        1000;
 
 
     const restante =
@@ -1293,12 +1637,16 @@ function pararCrono() {
 
 
     document
-        .getElementById("btn-parar")
+        .getElementById(
+            "btn-parar"
+        )
         .disabled = true;
 
 
     document
-        .getElementById("btn-iniciar")
+        .getElementById(
+            "btn-iniciar"
+        )
         .disabled = true;
 
 
@@ -1308,41 +1656,76 @@ function pararCrono() {
         );
 
 
-    if (restante < 0) {
+    if (
+        restante < 0
+    ) {
 
         resultado.innerHTML =
-            `💀 <strong>TE HAS PASADO.</strong><br>
+            `
+            💀 <strong>
+            TE HAS PASADO.
+            </strong>
+
+            <br>
+
             Has parado en
-            ${restante.toFixed(5)} s`;
+
+            ${restante.toFixed(5)} s
+            `;
 
     }
 
-    else if (restante < 0.05) {
+    else if (
+        restante < 0.05
+    ) {
 
         resultado.innerHTML =
-            `🤯🔥 <strong>¡CLAVADÍSIMO!</strong><br>
+            `
+            🤯🔥 <strong>
+            ¡CLAVADÍSIMO!
+            </strong>
+
+            <br>
+
             ${restante.toFixed(5)}
-            segundos del cero.`;
+            segundos del cero.
+            `;
 
     }
 
-    else if (restante < 0.20) {
+    else if (
+        restante < 0.20
+    ) {
 
         resultado.innerHTML =
-            `🔥 <strong>¡MUY CERCA!</strong><br>
+            `
+            🔥 <strong>
+            ¡MUY CERCA!
+            </strong>
+
+            <br>
+
             Te has quedado en
-            ${restante.toFixed(5)} s`;
+
+            ${restante.toFixed(5)} s
+            `;
 
     }
 
     else {
 
         resultado.innerHTML =
-            `🍺 Te has quedado en
+            `
+            🍺 Te has quedado en
+
             <strong>
             ${restante.toFixed(5)} s
-            </strong>.<br>
-            Que pruebe tu contrincante.`;
+            </strong>
+
+            <br>
+
+            Que pruebe tu contrincante.
+            `;
 
     }
 
@@ -1386,17 +1769,467 @@ function resetCrono() {
 
 
     document
-        .getElementById("btn-iniciar")
+        .getElementById(
+            "btn-iniciar"
+        )
         .disabled = false;
 
 
     document
-        .getElementById("btn-parar")
+        .getElementById(
+            "btn-parar"
+        )
         .disabled = true;
+
+}
+
+
+/* ========================================
+   BARAJA
+======================================== */
+
+const valoresCartas = [
+
+    {
+        nombre:"2",
+        valor:2
+    },
+
+    {
+        nombre:"3",
+        valor:3
+    },
+
+    {
+        nombre:"4",
+        valor:4
+    },
+
+    {
+        nombre:"5",
+        valor:5
+    },
+
+    {
+        nombre:"6",
+        valor:6
+    },
+
+    {
+        nombre:"7",
+        valor:7
+    },
+
+    {
+        nombre:"8",
+        valor:8
+    },
+
+    {
+        nombre:"9",
+        valor:9
+    },
+
+    {
+        nombre:"10",
+        valor:10
+    },
+
+    {
+        nombre:"J",
+        valor:11
+    },
+
+    {
+        nombre:"Q",
+        valor:12
+    },
+
+    {
+        nombre:"K",
+        valor:13
+    },
+
+    {
+        nombre:"A",
+        valor:14
+    }
+
+];
+
+
+const palos = [
+
+    {
+        simbolo:"♠",
+        color:"negra"
+    },
+
+    {
+        simbolo:"♣",
+        color:"negra"
+    },
+
+    {
+        simbolo:"♥",
+        color:"roja"
+    },
+
+    {
+        simbolo:"♦",
+        color:"roja"
+    }
+
+];
+
+
+let cartaActual = null;
+
+let tragos = 0;
+
+let partidaBarajaActiva = false;
+
+
+function cartaAleatoria() {
+
+    const valor =
+        valoresCartas[
+            Math.floor(
+                Math.random() *
+                valoresCartas.length
+            )
+        ];
+
+
+    const palo =
+        palos[
+            Math.floor(
+                Math.random() *
+                palos.length
+            )
+        ];
+
+
+    return {
+
+        nombre:
+            valor.nombre,
+
+        valor:
+            valor.valor,
+
+        palo:
+            palo.simbolo,
+
+        color:
+            palo.color
+
+    };
+
+}
+
+
+function pintarCarta(carta) {
+
+    const elemento =
+        document.getElementById(
+            "cartaActual"
+        );
+
+
+    document
+        .getElementById(
+            "valorCarta"
+        )
+        .innerText =
+        carta.nombre;
+
+
+    document
+        .getElementById(
+            "paloCarta"
+        )
+        .innerText =
+        carta.palo;
+
+
+    elemento.classList.remove(
+        "roja",
+        "negra"
+    );
+
+
+    elemento.classList.add(
+        carta.color
+    );
+
+}
+
+
+function activarBotonesBaraja(
+    activo
+) {
+
+    document
+        .getElementById(
+            "btn-menor"
+        )
+        .disabled =
+        !activo;
+
+
+    document
+        .getElementById(
+            "btn-igual"
+        )
+        .disabled =
+        !activo;
+
+
+    document
+        .getElementById(
+            "btn-mayor"
+        )
+        .disabled =
+        !activo;
+
+}
+
+
+function iniciarBaraja() {
+
+    cartaActual =
+        cartaAleatoria();
+
+
+    tragos = 0;
+
+
+    partidaBarajaActiva =
+        true;
+
+
+    pintarCarta(
+        cartaActual
+    );
+
+
+    document
+        .getElementById(
+            "tragosAcumulados"
+        )
+        .innerText =
+        tragos;
+
+
+    document
+        .getElementById(
+            "estado-baraja"
+        )
+        .innerHTML =
+        `
+        Primera carta:
+
+        <strong>
+        ${cartaActual.nombre}${cartaActual.palo}
+        </strong>
+
+        <br><br>
+
+        ¿La siguiente será
+        MAYOR, MENOR o IGUAL?
+        `;
+
+
+    document
+        .getElementById(
+            "btn-empezar-baraja"
+        )
+        .innerText =
+        "↻ REINICIAR PARTIDA";
+
+
+    activarBotonesBaraja(
+        true
+    );
+
+}
+
+
+function jugarCarta(eleccion) {
+
+    if (
+        !partidaBarajaActiva
+    ) return;
+
+
+    const nuevaCarta =
+        cartaAleatoria();
+
+
+    let resultadoReal;
+
+
+    if (
+        nuevaCarta.valor >
+        cartaActual.valor
+    ) {
+
+        resultadoReal =
+            "mayor";
+
+    }
+
+    else if (
+        nuevaCarta.valor <
+        cartaActual.valor
+    ) {
+
+        resultadoReal =
+            "menor";
+
+    }
+
+    else {
+
+        resultadoReal =
+            "igual";
+
+    }
+
+
+    pintarCarta(
+        nuevaCarta
+    );
+
+
+    const estado =
+        document.getElementById(
+            "estado-baraja"
+        );
+
+
+    if (
+        eleccion ===
+        resultadoReal
+    ) {
+
+        tragos++;
+
+
+        document
+            .getElementById(
+                "tragosAcumulados"
+            )
+            .innerText =
+            tragos;
+
+
+        estado.innerHTML =
+            `
+            ✅ <strong>¡ACIERTO!</strong>
+
+            <br><br>
+
+            Ha salido
+
+            <strong>
+            ${nuevaCarta.nombre}${nuevaCarta.palo}
+            </strong>
+
+            <br><br>
+
+            🍺 Ahora tienes
+
+            <strong>
+            ${tragos}
+            ${tragos === 1
+                ? "trago"
+                : "tragos"}
+            </strong>
+
+            acumulados.
+
+            <br><br>
+
+            ¿Te atreves a seguir?
+            `;
+
+
+        cartaActual =
+            nuevaCarta;
+
+    }
+
+    else {
+
+        const tragosABeber =
+            Math.max(
+                1,
+                tragos
+            );
+
+
+        estado.innerHTML =
+            `
+            💀 <strong>
+            ¡HAS FALLADO!
+            </strong>
+
+            <br><br>
+
+            Ha salido
+
+            <strong>
+            ${nuevaCarta.nombre}${nuevaCarta.palo}
+            </strong>
+
+            <br><br>
+
+            Tú dijiste:
+
+            <strong>
+            ${eleccion.toUpperCase()}
+            </strong>
+
+            <br><br>
+
+            🍺🍺🍺
+
+            <br>
+
+            <strong>
+            ¡BÉBETE
+            ${tragosABeber}
+            ${tragosABeber === 1
+                ? "TRAGO"
+                : "TRAGOS"}!
+            </strong>
+            `;
+
+
+        activarBotonesBaraja(
+            false
+        );
+
+
+        partidaBarajaActiva =
+            false;
+
+
+        document
+            .getElementById(
+                "btn-empezar-baraja"
+            )
+            .innerText =
+            "🃏 NUEVA PARTIDA";
+
+    }
 
 }
 
 </script>
 
 </body>
+
 </html>
