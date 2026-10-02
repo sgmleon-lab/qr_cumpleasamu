@@ -10,6 +10,10 @@
 
 <style>
 
+/* ==================================================
+   GENERAL
+================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -36,10 +40,6 @@ body {
 
     padding: 20px;
 }
-
-/* =========================
-   GENERAL
-========================= */
 
 .pantalla {
     display: none;
@@ -111,9 +111,9 @@ h2 {
 }
 
 
-/* =========================
+/* ==================================================
    MENÚ
-========================= */
+================================================== */
 
 .menu-juegos {
     display: grid;
@@ -218,9 +218,9 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    PERRO PITONISO
-================================= */
+================================================== */
 
 .templo-perro {
     max-width: 440px;
@@ -260,8 +260,7 @@ h2 {
             #2d3436
         );
 
-    border:
-        8px solid #ffeaa7;
+    border: 8px solid #ffeaa7;
 
     display: flex;
 
@@ -296,6 +295,7 @@ h2 {
             rotate(7deg)
             scale(1.04);
     }
+
 }
 
 .mensaje-pitoniso {
@@ -303,11 +303,11 @@ h2 {
 
     color: #2d3436;
 
-    min-height: 145px;
+    min-height: 150px;
 
     margin-top: 25px;
 
-    padding: 20px;
+    padding: 22px;
 
     border-radius: 16px;
 
@@ -322,6 +322,10 @@ h2 {
     font-size: 1.08rem;
 
     font-weight: 600;
+
+    box-shadow:
+        inset 0 0 10px
+        rgba(0,0,0,.06);
 }
 
 .pitoniso-enfadado {
@@ -331,9 +335,9 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    DADOS
-================================= */
+================================================== */
 
 .zona-dados {
     display: flex;
@@ -396,6 +400,7 @@ h2 {
             rotate(-5deg)
             scale(.95);
     }
+
 }
 
 .resultado-juego {
@@ -415,9 +420,9 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    CRONO
-================================= */
+================================================== */
 
 .crono {
     font-family:
@@ -472,9 +477,9 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    BARAJA
-================================= */
+================================================== */
 
 .carta {
     width: 150px;
@@ -570,9 +575,9 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    RULETA ETÍLICA
-================================= */
+================================================== */
 
 .ruleta-etilica-wrap {
     position: relative;
@@ -680,6 +685,7 @@ h2 {
         transform:
             rotate(2160deg);
     }
+
 }
 
 .resultado-etilica {
@@ -708,28 +714,25 @@ h2 {
 }
 
 
-/* =================================
+/* ==================================================
    TRAGAPERRAS
-================================= */
+================================================== */
 
 .slot-machine {
     max-width: 500px;
 
-    margin:
-        30px auto;
+    margin: 30px auto;
 
-    padding: 25px 18px;
+    padding: 22px 16px;
 
     background:
         linear-gradient(
             180deg,
-            #d63031,
-            #8e1b1b
+            #c0392b,
+            #7b241c
         );
 
-    border:
-        7px solid
-        #2d3436;
+    border: 8px solid #2d3436;
 
     border-radius: 25px;
 
@@ -741,12 +744,98 @@ h2 {
 .slot-titulo {
     color: #ffeaa7;
 
-    font-size: 1.35rem;
+    font-size: 1.4rem;
 
     font-weight: 900;
 
-    margin-bottom: 20px;
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
 }
+
+
+/* pantallas */
+
+.panel-slot-info {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.display-slot {
+    background: #111;
+
+    border:
+        4px solid
+        #ffeaa7;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    box-shadow:
+        inset 0 0 12px
+        rgba(0,0,0,.8);
+}
+
+.display-label {
+    color: #ffeaa7;
+
+    font-size: .75rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.display-numero {
+    font-family:
+        "Courier New",
+        monospace;
+
+    color: #00ff88;
+
+    font-size: 2.5rem;
+
+    font-weight: 900;
+
+    line-height: 1.1;
+
+    text-shadow:
+        0 0 8px
+        rgba(0,255,136,.8);
+}
+
+.avances-flash {
+    animation:
+        flashAvances
+        .25s
+        6 alternate;
+}
+
+@keyframes flashAvances {
+
+    from {
+        background: #111;
+
+        transform: scale(1);
+    }
+
+    to {
+        background: #fff200;
+
+        transform: scale(1.05);
+    }
+
+}
+
+
+/* rodillos */
 
 .rodillos {
     display: flex;
@@ -788,7 +877,7 @@ h2 {
 .rodillo-girando {
     animation:
         rodilloGira
-        .12s
+        .10s
         infinite;
 }
 
@@ -796,16 +885,20 @@ h2 {
 
     from {
         transform:
-            translateY(-4px)
-            rotate(-2deg);
+            translateY(-5px)
+            rotate(-3deg);
     }
 
     to {
         transform:
-            translateY(4px)
-            rotate(2deg);
+            translateY(5px)
+            rotate(3deg);
     }
+
 }
+
+
+/* avances */
 
 .panel-avances {
     background: #ffeaa7;
@@ -814,11 +907,19 @@ h2 {
 
     margin-top: 18px;
 
-    padding: 12px;
+    padding: 13px;
 
     border-radius: 12px;
+}
+
+.titulo-avances {
+    font-size: .85rem;
 
     font-weight: 900;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
 }
 
 .botones-avance {
@@ -827,9 +928,7 @@ h2 {
     grid-template-columns:
         repeat(3,1fr);
 
-    gap: 8px;
-
-    margin-top: 12px;
+    gap: 7px;
 }
 
 .boton-avance {
@@ -837,7 +936,7 @@ h2 {
 
     border-radius: 10px;
 
-    padding: 10px 5px;
+    padding: 10px 4px;
 
     cursor: pointer;
 
@@ -849,27 +948,18 @@ h2 {
 }
 
 .boton-avance:disabled {
-    opacity: .4;
+    opacity: .35;
 }
 
-.slot-controles {
-    display: flex;
 
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-top: 20px;
-}
+/* resultado slot */
 
 .slot-resultado {
     background: white;
 
-    margin-top: 20px;
+    margin-top: 18px;
 
-    min-height: 125px;
+    min-height: 130px;
 
     padding: 18px;
 
@@ -884,6 +974,18 @@ h2 {
     justify-content: center;
 
     line-height: 1.5;
+}
+
+.slot-controles {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
 }
 
 .jackpot {
@@ -904,12 +1006,31 @@ h2 {
         transform:
             scale(1.05);
     }
+
+}
+
+.boton-recargar {
+    margin-top: 18px;
+
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #fdcb6e;
+
+    color: #2d3436;
+
+    font-weight: 900;
+
+    cursor: pointer;
 }
 
 
-/* =================================
+/* ==================================================
    MÓVIL
-================================= */
+================================================== */
 
 @media(max-width:520px) {
 
@@ -955,6 +1076,10 @@ h2 {
         height: 100px;
 
         font-size: 50px;
+    }
+
+    .display-numero {
+        font-size: 2rem;
     }
 
 }
@@ -1113,16 +1238,16 @@ Bueno... casi todo.
 
 <br><br>
 
-Hazle una consulta.
+Consulta tu destino.
 
 <br>
 
-Pensará detenidamente sobre tu destino.
+El perro pensará y te entregará una tarjeta.
 
 <br><br>
 
 <strong>
-A veces se enfada y se niega a responder.
+Pero cuidado: puede enfadarse.
 </strong>
 
 </div>
@@ -1143,11 +1268,7 @@ class="bola-cristal">
 id="mensajePerro"
 class="mensaje-pitoniso">
 
-<div class="samu-quiere">
-SAMU QUIERE QUE...
-</div>
-
-consultes al perro pitoniso.
+🔮 El perro pitoniso espera tu consulta.
 
 </div>
 
@@ -1204,21 +1325,27 @@ Cada uno tira los dados desde su móvil.
 
 <br>
 
-Comparad la suma.
+Comparad la suma de los dos dados.
 
 <br><br>
 
 <strong>
-La puntuación más baja bebe.
+El que saque menor puntuación, BEBE. 🍺
 </strong>
 
 <br><br>
 
-⚠️ Si salen
+⚠️ <strong>REGLA DE LOS DOBLES:</strong>
 
-<strong>DOBLES</strong>,
+<br>
 
-bebes independientemente del resultado.
+Si los dos dados muestran el mismo número,
+
+<strong>
+BEBES automáticamente,
+</strong>
+
+independientemente del resultado.
 
 </div>
 
@@ -1263,6 +1390,7 @@ onclick="tirarDados()">
 
 </button>
 
+
 </div>
 
 </section>
@@ -1299,7 +1427,7 @@ Elige a un contrincante.
 
 <br>
 
-El contador empieza en
+El cronómetro empieza en
 
 <strong>5 segundos.</strong>
 
@@ -1313,7 +1441,9 @@ sin pasarte.
 
 <br><br>
 
-El que quede más cerca gana.
+<strong>
+El que más cerca se quede de 0 sin pasarse gana.
+</strong>
 
 </div>
 
@@ -1397,7 +1527,7 @@ onclick="volverMenu()">
 
 
 <h2>
-🃏 MAYOR, MENOR O IGUAL 🃏
+🃏🍻 MAYOR, MENOR O IGUAL 🍻🃏
 </h2>
 
 
@@ -1407,11 +1537,9 @@ Mira la carta.
 
 <br>
 
-Adivina si la siguiente será
+Decide si la siguiente será
 
-<strong>
-MAYOR, MENOR o IGUAL.
-</strong>
+<strong>MAYOR, MENOR o IGUAL.</strong>
 
 <br><br>
 
@@ -1421,7 +1549,15 @@ Cada acierto acumula
 
 <br>
 
-Si fallas, bebes todos los acumulados.
+Puedes seguir arriesgando.
+
+<br><br>
+
+Si fallas,
+
+<strong>
+te bebes todos los tragos acumulados.
+</strong>
 
 <br><br>
 
@@ -1552,9 +1688,11 @@ onclick="volverMenu()">
 
 Gira la ruleta.
 
-<br>
+<br><br>
 
-Samu decidirá tu destino.
+<strong>
+SAMU decidirá tu destino.
+</strong>
 
 </div>
 
@@ -1638,15 +1776,23 @@ onclick="volverMenu()">
 
 <div class="instrucciones">
 
-Haz girar los rodillos.
+Empiezas con
+
+<strong>10 CRÉDITOS.</strong>
 
 <br>
 
-Puedes conseguir
+Cada tirada cuesta 1 crédito.
 
-<strong>AVANCES</strong>
+<br><br>
 
-y utilizarlos para mover manualmente un rodillo antes de cobrar.
+⚡ Algunas tiradas te dan
+
+<strong>1, 2 o 3 AVANCES.</strong>
+
+<br>
+
+Cada avance permite mover un rodillo una posición antes de cobrar.
 
 <br><br>
 
@@ -1673,7 +1819,51 @@ y utilizarlos para mover manualmente un rodillo antes de cobrar.
 
 
 <div class="slot-titulo">
+
 ★ CUMPLESAMU CASINO ★
+
+</div>
+
+
+<div class="panel-slot-info">
+
+
+<div class="display-slot">
+
+<div class="display-label">
+CRÉDITOS
+</div>
+
+<div
+id="numeroCreditos"
+class="display-numero">
+
+10
+
+</div>
+
+</div>
+
+
+<div
+id="displayAvances"
+class="display-slot">
+
+<div class="display-label">
+AVANCES
+</div>
+
+<div
+id="numeroAvances"
+class="display-numero">
+
+0
+
+</div>
+
+</div>
+
+
 </div>
 
 
@@ -1687,6 +1877,7 @@ class="rodillo">
 
 </div>
 
+
 <div
 id="reel2"
 class="rodillo">
@@ -1694,6 +1885,7 @@ class="rodillo">
 🍋
 
 </div>
+
 
 <div
 id="reel3"
@@ -1708,11 +1900,11 @@ class="rodillo">
 
 <div class="panel-avances">
 
-⚡ AVANCES DISPONIBLES:
+<div class="titulo-avances">
 
-<span id="numeroAvances">
-0
-</span>
+⚡ USA TUS AVANCES ⚡
+
+</div>
 
 
 <div class="botones-avance">
@@ -1760,7 +1952,11 @@ disabled>
 id="slotResultado"
 class="slot-resultado">
 
-🎰 Introduce metafóricamente una moneda y prueba suerte.
+🎰 Tienes 10 créditos.
+
+<br><br>
+
+Pulsa GIRAR y prueba suerte.
 
 </div>
 
@@ -1773,7 +1969,7 @@ id="botonSpin"
 class="boton-principal"
 onclick="girarSlots()">
 
-🎰 GIRAR
+🎰 GIRAR · 1 CRÉDITO
 
 </button>
 
@@ -1791,6 +1987,18 @@ disabled>
 
 </div>
 
+
+<button
+id="botonRecargar"
+class="boton-recargar"
+onclick="recargarCreditos()"
+style="display:none;">
+
+🪙 RECARGAR 10 CRÉDITOS
+
+</button>
+
+
 </div>
 
 </div>
@@ -1800,7 +2008,6 @@ disabled>
 
 
 <script>
-
 
 /* =================================================
    NAVEGACIÓN
@@ -1865,85 +2072,93 @@ function volverMenu() {
 
 
 /* =================================================
-   PERRO PITONISO
+   EL DESTINO DEL PERRO BORRACHO
 ================================================= */
 
 const frases = [
 
 "Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
 
+"Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
+
 "No dejes para mañana lo que puedas hacer... pasado mañana.",
 
-"Sonrías. Te están grabando. Es broma. O tal vez no.",
+"Sonríe, te están grabando (es broma, o tal vez no).",
 
-"dejes el móvil cinco minutos. Pero termina de leer esto primero.",
+"La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
 
-"le pidas una caña a Samu.",
+"Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.",
 
-"te tomes un chupito y le pidas a Toni que te invite.",
+"Si lees esto, pídele una caña a Samu.",
 
-"busques a Compadre y le pidas un chupito.",
+"¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.",
 
-"te mojes por dentro. Pídele un chupito a Will.",
+"Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.",
 
-"averigües cuántos chupitos le entran en la boca a Matilla. Experimento empírico.",
+"¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.",
 
-"recuerdes que un chupito probablemente sea más barato que una hora de consulta con Psicosilvia.",
+"¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.",
 
-"busques al letrado de la sala y le pagues un chupito a Sergio.",
+"Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.",
 
-"te bebas la cerveza de un trago a la salud de Pelli.",
+"¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).",
 
-"aproveches que esta cerveza es más artesana que Musart y bebas.",
+"Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).",
 
-"animes a Elde porque esto todavía no parece una rave. Invítale a un chupito.",
+"Esta cerveza es más artesana que Musart, aprovecha y bebe.",
 
-"recuerdes que a falta de Prieto Picudo, bueno es el Calimotxo. Busca a Rubén.",
+"Elde está triste porque esto no parece una rave, invítale a un chupito.",
 
-"te tomes una cerveza con Alvarolo antes de que saque el dedo inquisidor.",
+"A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.",
 
-"busques a Lucitec. O hace un baile o te invita a un chupito.",
+"Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.",
 
-"busques a Patri y le pidas la caña que te debe.",
+"Busca a Lucitec, o te hace un baile, o te invita a un chupito.",
 
-"invites a Laura a algo antes de las 12. Después puede convertirse en Gremlin.",
+"¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!",
 
-"localices a Cristina, bailes un perreo con ella y le pidas un chupito.",
+"Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.",
 
-"busques a Lolo y le pidas algo de beber.",
+"Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.",
 
-"preguntes a Álvaro si eso es una avutarda. Sea cual sea la respuesta, toca beber.",
+"Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.",
 
-"compruebes si Mario tiene cara seria. Si la tiene, pídele algo.",
+"¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.",
 
-"cuides de Noemí, que ha venido desde la lejanísima Palencia.",
+"Si Mario tiene cara seria, le toca pagarte lo que le pidas.",
 
-"te bebas una caña con Orki antes de que empiece a hablar de química.",
+"Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).",
 
-"le busques a Julia una terapia de choque en forma de shot.",
+"¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!",
 
-"preguntes a Silvet si eso es un tigre o un gatito.",
+"Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!",
 
-"te acerques a Sara y bebas algo.",
+"¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.",
 
-"bebas si estás a menos de un metro de un Álvaro.",
+"Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.",
 
-"vigiles el vaso de Yolanda. Vacío o lleno, aquí hay trabajo.",
+"Si te encuentras a menos de 1 metro de un Álvaro, bebes.",
 
-"busques a David. Si no le conoces, preséntate. Después bebéis.",
+"Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.",
 
-"consultes a Mer por ese dolor de cabeza y le pagues la consulta en forma de chupito.",
+"Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.",
 
-"hidrates urgentemente a Andrés.",
+"¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.",
 
-"busques a Isa. Si está a menos de un metro, bebéis los dos.",
+"Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!",
 
-"rescates a Miriam de tanta Coca-Cola y os toméis algo.",
+"La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!",
 
-"busques a Andrés maquinista. Si no ha llegado, bebe a su salud. Si ha llegado, que te pague uno."
+"Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.",
+
+"Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!"
 
 ];
 
+
+/* =================================================
+   ANTI-REPETICIÓN DEL PERRO
+================================================= */
 
 let frasesVistas = [];
 
@@ -2036,6 +2251,10 @@ function elegirFraseNueva() {
 }
 
 
+/* =================================================
+   CONSULTAR AL PERRO
+================================================= */
+
 function consultarPerro() {
 
     const bola =
@@ -2074,17 +2293,26 @@ function consultarPerro() {
 
     mensaje.innerHTML =
         `
-        <div class="samu-quiere">
+        <div style="
+        font-size:1.2rem;
+        font-weight:900;
+        margin-bottom:10px;
+        ">
+
         EL PERRO ESTÁ PENSANDO...
+
         </div>
 
-        Consultando los astros,
-        el alcohol y otras fuentes
-        de dudosa fiabilidad...
+        🔮 Consultando tu futuro...
+
+        <br><br>
+
+        🍺 Esto requiere concentración.
         `;
 
 
     setTimeout(() => {
+
 
         /*
         18% de posibilidades
@@ -2115,16 +2343,23 @@ function consultarPerro() {
 
             mensaje.innerHTML =
                 `
-                <div class="samu-quiere">
-                EL PERRO SE HA ENFADADO
+                <div style="
+                font-size:3rem;
+                margin-bottom:12px;
+                ">
+
+                🐶💢
+
                 </div>
 
-                😡 NO PIENSA DECIRTE NADA.
+                <strong>
+                No estás bebiendo nada.
+                </strong>
 
                 <br><br>
 
-                Tendrás que volver
-                a consultarle.
+                Hasta que no hagas caso de mis indicaciones
+                no te voy a decir nada más.
                 `;
 
 
@@ -2145,11 +2380,24 @@ function consultarPerro() {
 
             mensaje.innerHTML =
                 `
-                <div class="samu-quiere">
-                SAMU QUIERE QUE...
+                <div style="
+                font-size:2rem;
+                margin-bottom:12px;
+                ">
+
+                🔮
+
                 </div>
 
+                <div style="
+                font-size:1.12rem;
+                font-weight:700;
+                line-height:1.55;
+                ">
+
                 ${frases[indice]}
+
+                </div>
                 `;
 
 
@@ -2163,7 +2411,7 @@ function consultarPerro() {
             false;
 
 
-    }, 2000);
+    },2000);
 
 }
 
@@ -2292,19 +2540,29 @@ function tirarDados() {
 
             resultado.innerHTML =
                 `
-                <div class="samu-quiere">
-                SAMU QUIERE QUE...
-                </div>
-
-                🔥 <strong>¡DOBLES!</strong> 🔥
+                🔥🔥
+                <strong>¡DOBLES!</strong>
+                🔥🔥
 
                 <br><br>
 
+                Has sacado
+
+                <strong>
                 ${n1} + ${n2} = ${suma}
+                </strong>
 
                 <br><br>
 
-                🍺 <strong>BEBAS.</strong>
+                Da igual la puntuación...
+
+                <br><br>
+
+                🍺
+                <strong>
+                ¡BEBES!
+                </strong>
+                🍺
                 `;
 
         }
@@ -2333,11 +2591,13 @@ function tirarDados() {
 
                 <br>
 
+                <strong>
                 PUNTOS
+                </strong>
 
                 <br><br>
 
-                Compara con tu contrincante.
+                📱 Compara con tu contrincante.
                 `;
 
         }
@@ -2411,7 +2671,7 @@ function iniciarCrono() {
             "resultado-crono"
         )
         .innerText =
-        "¡¡¡AHORA!!!";
+        "¡¡¡AHORA!!! Intenta clavar el 0.00000 👀";
 
 
     intervaloCrono =
@@ -2528,7 +2788,10 @@ function pararCrono() {
 
         resultado.innerHTML =
             `
-            💀 <strong>TE HAS PASADO.</strong>
+            💀
+            <strong>
+            TE HAS PASADO.
+            </strong>
 
             <br><br>
 
@@ -2543,7 +2806,28 @@ function pararCrono() {
 
         resultado.innerHTML =
             `
-            🤯🔥 <strong>¡CLAVADÍSIMO!</strong>
+            🤯🔥
+            <strong>
+            ¡CLAVADÍSIMO!
+            </strong>
+
+            <br><br>
+
+            ${restante.toFixed(5)} s
+            `;
+
+    }
+
+    else if (
+        restante < .20
+    ) {
+
+        resultado.innerHTML =
+            `
+            🔥
+            <strong>
+            ¡MUY CERCA!
+            </strong>
 
             <br><br>
 
@@ -2899,7 +3183,7 @@ function iniciarBaraja() {
         <br><br>
 
         ¿La siguiente será
-        mayor, menor o igual?
+        MAYOR, MENOR o IGUAL?
         `;
 
 
@@ -2995,15 +3279,22 @@ function jugarCarta(
 
         estado.innerHTML =
             `
-            ✅ <strong>¡ACIERTO!</strong>
+            ✅
+            <strong>
+            ¡ACIERTO!
+            </strong>
 
             <br><br>
 
+            Ha salido
+
+            <strong>
             ${nueva.nombre}${nueva.palo}
+            </strong>
 
             <br><br>
 
-            Llevas
+            🍺 Ahora tienes
 
             <strong>
             ${tragos}
@@ -3016,7 +3307,7 @@ function jugarCarta(
 
             <br><br>
 
-            ¿Seguimos?
+            ¿Te atreves a seguir?
             `;
 
 
@@ -3036,11 +3327,10 @@ function jugarCarta(
 
         estado.innerHTML =
             `
-            <div class="samu-quiere">
-            SAMU QUIERE QUE...
-            </div>
-
-            💀 HAS FALLADO.
+            💀
+            <strong>
+            ¡HAS FALLADO!
+            </strong>
 
             <br><br>
 
@@ -3052,13 +3342,21 @@ function jugarCarta(
 
             <br><br>
 
-            🍺 BEBAS
+            Tú dijiste
 
             <strong>
+            ${eleccion.toUpperCase()}
+            </strong>
+
+            <br><br>
+
+            🍺
+            <strong>
+            ¡BÉBETE
             ${beber}
             ${beber === 1
                 ? "TRAGO"
-                : "TRAGOS"}.
+                : "TRAGOS"}!
             </strong>
             `;
 
@@ -3118,7 +3416,7 @@ const destinosMortales = [
 
 {
     emoji:"✌️",
-    texto:"elijas a dos personas y ambas beban."
+    texto:"elijas a dos personas y ambas beban 1 trago."
 },
 
 {
@@ -3143,7 +3441,7 @@ const destinosMortales = [
 
 {
     emoji:"🔋",
-    texto:"comparéis batería. Quien tenga menos porcentaje bebe."
+    texto:"comparéis el porcentaje de batería. Quien tenga menos bebe."
 },
 
 {
@@ -3153,12 +3451,12 @@ const destinosMortales = [
 
 {
     emoji:"🥂",
-    texto:"brindéis todos y bebáis un trago."
+    texto:"brindéis todos y bebáis 1 trago."
 },
 
 {
     emoji:"🔄",
-    texto:"elijas a otra persona para que gire la ruleta en tu lugar."
+    texto:"elijas a otra persona. Esa persona debe girar la ruleta."
 },
 
 {
@@ -3169,6 +3467,11 @@ const destinosMortales = [
 {
     emoji:"👑",
     texto:"SAMU DECIDA. Busca a Samu y acepta su sentencia."
+},
+
+{
+    emoji:"☠️",
+    texto:"vuelvas a girar. MUERTE SÚBITA."
 }
 
 ];
@@ -3219,7 +3522,7 @@ function girarEtilica() {
         `
         ☠️
 
-        <br>
+        <br><br>
 
         Samu está decidiendo...
         `;
@@ -3257,17 +3560,23 @@ function girarEtilica() {
             font-size:3rem;
             margin-bottom:10px;
             ">
+
             ${elegido.emoji}
+
             </div>
 
             <div class="samu-quiere">
+
             SAMU QUIERE QUE...
+
             </div>
 
             <div style="
             font-size:1.25rem;
             ">
+
             ${elegido.texto}
+
             </div>
 
             </div>
@@ -3316,6 +3625,14 @@ let reels = [
 ];
 
 
+/* 10 créditos de salida */
+
+let creditos =
+    10;
+
+
+/* avances acumulados */
+
 let avances =
     0;
 
@@ -3327,6 +3644,34 @@ let slotPendiente =
 let slotGirando =
     false;
 
+
+/* =================================================
+   PANEL SLOT
+================================================= */
+
+function actualizarPanelSlot() {
+
+    document
+        .getElementById(
+            "numeroCreditos"
+        )
+        .innerText =
+        creditos;
+
+
+    document
+        .getElementById(
+            "numeroAvances"
+        )
+        .innerText =
+        avances;
+
+}
+
+
+/* =================================================
+   PINTAR RODILLOS
+================================================= */
 
 function pintarSlots() {
 
@@ -3360,20 +3705,20 @@ function pintarSlots() {
         ];
 
 
-    document
-        .getElementById(
-            "numeroAvances"
-        )
-        .innerText =
-        avances;
+    actualizarPanelSlot();
 
 }
 
 
+/* =================================================
+   BOTONES AVANCES
+================================================= */
+
 function actualizarBotonesAvance() {
 
     const activo =
-        slotPendiente &&
+        slotPendiente
+        &&
         avances > 0;
 
 
@@ -3396,16 +3741,61 @@ function actualizarBotonesAvance() {
 }
 
 
+/* =================================================
+   GIRAR TRAGAPERRAS
+================================================= */
+
 function girarSlots() {
 
     if (
-        slotGirando ||
+        slotGirando
+        ||
         slotPendiente
     ) {
 
         return;
 
     }
+
+
+    if (
+        creditos <= 0
+    ) {
+
+        document
+            .getElementById(
+                "slotResultado"
+            )
+            .innerHTML =
+            `
+            🪙
+            <strong>
+            NO TE QUEDAN CRÉDITOS
+            </strong>
+
+            <br><br>
+
+            Recarga para seguir jugando.
+            `;
+
+
+        document
+            .getElementById(
+                "botonRecargar"
+            )
+            .style.display =
+            "inline-block";
+
+
+        return;
+
+    }
+
+
+    creditos--;
+
+
+    actualizarPanelSlot();
 
 
     slotGirando =
@@ -3445,12 +3835,18 @@ function girarSlots() {
 
     resultado.innerHTML =
         `
-        🎰 Girando...
+        🎰
+        <strong>
+        GIRANDO...
+        </strong>
 
-        <br>
+        <br><br>
 
-        La casa siempre gana.
-        Más o menos.
+        Créditos restantes:
+
+        <strong>
+        ${creditos}
+        </strong>
         `;
 
 
@@ -3472,10 +3868,13 @@ function girarSlots() {
 
 
     elementos.forEach(
-        elemento =>
+        elemento => {
+
             elemento.classList.add(
                 "rodillo-girando"
-            )
+            );
+
+        }
     );
 
 
@@ -3496,7 +3895,7 @@ function girarSlots() {
                 }
             );
 
-        },90);
+        },80);
 
 
     setTimeout(() => {
@@ -3507,10 +3906,13 @@ function girarSlots() {
 
 
         elementos.forEach(
-            elemento =>
+            elemento => {
+
                 elemento.classList.remove(
                     "rodillo-girando"
-                )
+                );
+
+            }
         );
 
 
@@ -3537,9 +3939,19 @@ function girarSlots() {
         pintarSlots();
 
 
-        /*
-        Posibilidad de ganar avances.
-        */
+        /* =========================================
+           AVANCES
+
+           45% = 0
+           32% = 1
+           16% = 2
+           7%  = 3
+
+           Total:
+           55% de posibilidades
+           de obtener avances.
+        ========================================= */
+
 
         const suerte =
             Math.random();
@@ -3550,7 +3962,16 @@ function girarSlots() {
 
 
         if (
-            suerte < .08
+            suerte < .07
+        ) {
+
+            ganados =
+                3;
+
+        }
+
+        else if (
+            suerte < .23
         ) {
 
             ganados =
@@ -3559,7 +3980,7 @@ function girarSlots() {
         }
 
         else if (
-            suerte < .35
+            suerte < .55
         ) {
 
             ganados =
@@ -3572,34 +3993,77 @@ function girarSlots() {
             ganados > 0
         ) {
 
-            avances =
-                Math.min(
-                    5,
-                    avances +
-                    ganados
+            avances +=
+                ganados;
+
+
+            if (
+                avances > 9
+            ) {
+
+                avances =
+                    9;
+
+            }
+
+
+            actualizarPanelSlot();
+
+
+            const pantallaAvances =
+                document.getElementById(
+                    "displayAvances"
+                );
+
+
+            pantallaAvances
+                .classList
+                .remove(
+                    "avances-flash"
+                );
+
+
+            void pantallaAvances.offsetWidth;
+
+
+            pantallaAvances
+                .classList
+                .add(
+                    "avances-flash"
                 );
 
 
             resultado.innerHTML =
                 `
-                ⚡ <strong>
-                ¡HAS GANADO
-                ${ganados}
+                ⚡⚡⚡
+
+                <br>
+
+                <strong style="
+                font-size:1.5rem;
+                ">
+
+                ¡${ganados}
                 ${ganados === 1
                     ? "AVANCE"
                     : "AVANCES"}!
+
                 </strong>
 
                 <br><br>
 
-                Puedes gastar avances
-                para mover un rodillo
-                antes de cobrar.
+                Ahora tienes
+
+                <strong>
+                ${avances}
+                </strong>
+
+                avances.
 
                 <br><br>
 
-                O puedes cobrar
-                directamente.
+                Puedes usarlos para mover
+                los rodillos antes de cobrar.
                 `;
 
         }
@@ -3608,19 +4072,32 @@ function girarSlots() {
 
             resultado.innerHTML =
                 `
-                🎰 Jugada terminada.
+                🎰 Tirada terminada.
 
                 <br><br>
 
-                Puedes cobrar el resultado
+                No has conseguido avances.
 
                 ${
                     avances > 0
+
                     ?
-                    "o gastar alguno de tus avances."
+
+                    `<br><br>
+                    Pero todavía tienes
+                    <strong>
+                    ${avances}
+                    </strong>
+                    guardados.`
+
                     :
-                    "ahora."
+
+                    ""
                 }
+
+                <br><br>
+
+                Puedes cobrar.
                 `;
 
         }
@@ -3632,14 +4109,6 @@ function girarSlots() {
 
         slotGirando =
             false;
-
-
-        document
-            .getElementById(
-                "numeroAvances"
-            )
-            .innerText =
-            avances;
 
 
         actualizarBotonesAvance();
@@ -3654,12 +4123,17 @@ function girarSlots() {
 }
 
 
+/* =================================================
+   USAR AVANCE
+================================================= */
+
 function usarAvance(
     reel
 ) {
 
     if (
-        !slotPendiente ||
+        !slotPendiente
+        ||
         avances <= 0
     ) {
 
@@ -3671,9 +4145,16 @@ function usarAvance(
     avances--;
 
 
+    /*
+    Cada avance mueve
+    ese rodillo al siguiente símbolo.
+    */
+
     reels[reel] =
         (
-            reels[reel] + 1
+            reels[reel]
+            +
+            1
         )
         %
         simbolosSlot.length;
@@ -3691,28 +4172,39 @@ function usarAvance(
         )
         .innerHTML =
         `
-        ⚡ Has usado un avance
-        en el rodillo
-        ${reel + 1}.
+        ⚡
+        <strong>
+        AVANCE UTILIZADO
+        </strong>
 
         <br><br>
 
-        Te quedan
+        Has avanzado el
+
+        <strong>
+        RODILLO ${reel + 1}
+        </strong>.
+
+        <br><br>
+
+        AVANCES RESTANTES:
 
         <strong>
         ${avances}
         </strong>
 
-        avances.
-
         <br><br>
 
-        Puedes seguir moviendo
-        o cobrar.
+        Puedes seguir usando avances
+        o pulsar COBRAR.
         `;
 
 }
 
+
+/* =================================================
+   PREMIO TRAGAPERRAS
+================================================= */
 
 function calcularPremioSlot() {
 
@@ -3721,10 +4213,12 @@ function calcularPremioSlot() {
             reels[0]
         ];
 
+
     const s2 =
         simbolosSlot[
             reels[1]
         ];
+
 
     const s3 =
         simbolosSlot[
@@ -3733,14 +4227,17 @@ function calcularPremioSlot() {
 
 
     if (
-        s1 === "7️⃣" &&
-        s2 === "7️⃣" &&
+        s1 === "7️⃣"
+        &&
+        s2 === "7️⃣"
+        &&
         s3 === "7️⃣"
     ) {
 
         return {
 
-            tragos:3,
+            tragos:
+                3,
 
             titulo:
                 "🎉 JACKPOT 🎉",
@@ -3754,20 +4251,23 @@ function calcularPremioSlot() {
 
 
     if (
-        s1 === "🔔" &&
-        s2 === "🔔" &&
+        s1 === "🔔"
+        &&
+        s2 === "🔔"
+        &&
         s3 === "🔔"
     ) {
 
         return {
 
-            tragos:3,
+            tragos:
+                3,
 
             titulo:
                 "🔔 PREMIO GRANDE 🔔",
 
             mensaje:
-                "¡Tres campanas!"
+                "¡TRES CAMPANAS!"
 
         };
 
@@ -3775,19 +4275,21 @@ function calcularPremioSlot() {
 
 
     if (
-        s1 === s2 &&
+        s1 === s2
+        &&
         s2 === s3
     ) {
 
         return {
 
-            tragos:2,
+            tragos:
+                2,
 
             titulo:
                 "🍒 TRIPLE 🍒",
 
             mensaje:
-                "¡Tres símbolos iguales!"
+                "¡TRES SÍMBOLOS IGUALES!"
 
         };
 
@@ -3795,14 +4297,17 @@ function calcularPremioSlot() {
 
 
     if (
-        s1 === s2 ||
-        s1 === s3 ||
+        s1 === s2
+        ||
+        s1 === s3
+        ||
         s2 === s3
     ) {
 
         return {
 
-            tragos:1,
+            tragos:
+                1,
 
             titulo:
                 "✨ PAREJA ✨",
@@ -3817,18 +4322,23 @@ function calcularPremioSlot() {
 
     return {
 
-        tragos:0,
+        tragos:
+            0,
 
         titulo:
             "💨 NADA",
 
         mensaje:
-            "La máquina se ha quedado con tu dignidad."
+            "La máquina se ha quedado con tu crédito."
 
     };
 
 }
 
+
+/* =================================================
+   COBRAR
+================================================= */
 
 function cobrarSlot() {
 
@@ -3851,6 +4361,11 @@ function cobrarSlot() {
         );
 
 
+    resultado.classList.remove(
+        "jackpot"
+    );
+
+
     if (
         premio.tragos > 0
     ) {
@@ -3858,14 +4373,18 @@ function cobrarSlot() {
         resultado.innerHTML =
             `
             <div class="samu-quiere">
+
             SAMU QUIERE QUE...
+
             </div>
 
             <div style="
             font-size:1.5rem;
             font-weight:900;
             ">
+
             ${premio.titulo}
+
             </div>
 
             <br>
@@ -3889,9 +4408,11 @@ function cobrarSlot() {
             premio.tragos >= 3
         ) {
 
-            resultado.classList.add(
-                "jackpot"
-            );
+            resultado
+                .classList
+                .add(
+                    "jackpot"
+                );
 
         }
 
@@ -3905,7 +4426,9 @@ function cobrarSlot() {
             font-size:1.5rem;
             font-weight:900;
             ">
+
             ${premio.titulo}
+
             </div>
 
             <br>
@@ -3935,6 +4458,64 @@ function cobrarSlot() {
         true;
 
 
+    const botonSpin =
+        document.getElementById(
+            "botonSpin"
+        );
+
+
+    if (
+        creditos > 0
+    ) {
+
+        botonSpin.disabled =
+            false;
+
+
+        botonSpin.innerText =
+            "🎰 GIRAR · 1 CRÉDITO";
+
+    }
+
+    else {
+
+        botonSpin.disabled =
+            true;
+
+
+        document
+            .getElementById(
+                "botonRecargar"
+            )
+            .style.display =
+            "inline-block";
+
+    }
+
+}
+
+
+/* =================================================
+   RECARGAR CRÉDITOS
+================================================= */
+
+function recargarCreditos() {
+
+    creditos +=
+        10;
+
+
+    actualizarPanelSlot();
+
+
+    document
+        .getElementById(
+            "botonRecargar"
+        )
+        .style.display =
+        "none";
+
+
     document
         .getElementById(
             "botonSpin"
@@ -3948,15 +4529,37 @@ function cobrarSlot() {
             "botonSpin"
         )
         .innerText =
-        "🎰 VOLVER A GIRAR";
+        "🎰 GIRAR · 1 CRÉDITO";
+
+
+    document
+        .getElementById(
+            "slotResultado"
+        )
+        .innerHTML =
+        `
+        🪙
+        <strong>
+        +10 CRÉDITOS
+        </strong>
+
+        <br><br>
+
+        Ya puedes seguir jugando.
+        `;
 
 }
 
 
-
-/* Pintar tragaperras inicial */
+/* =================================================
+   INICIALIZACIÓN TRAGAPERRAS
+================================================= */
 
 pintarSlots();
+
+actualizarPanelSlot();
+
+actualizarBotonesAvance();
 
 
 </script>
