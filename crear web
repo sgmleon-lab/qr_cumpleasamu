@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frase del día</title>
+    <title>¡Feliz Cumple Samu!</title>
     <style>
         body {
             display: flex;
@@ -12,8 +12,8 @@
             height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: #ffeaa7;
+            color: #2d3436;
             text-align: center;
             padding: 20px;
         }
@@ -21,66 +21,93 @@
             max-width: 600px;
             background: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             line-height: 1.5;
+            margin-bottom: 35px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background-color: #ff7675;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #d63031;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
 
     <div class="contenedor">
-        <h1 id="frase-destino">Cargando tu suerte...</h1>
+        <h1 id="frase-destino">Cargando tu juego... 🎲</h1>
+        <button onclick="mostrarFraseAleatoria()">¡Probar mi suerte! 🍻</button>
     </div>
 
     <script>
-        // ESCRIBE AQUÍ TODAS LAS FRASES QUE QUIERAS (Sepáralas por comas)
         const frases = [
-            "Si lees esto, pidele una caña a samu",
-            "Enhorabuena! Te toca tomar un chupito, pidele a toni que te invite",
-            "Compadre te paga un chupito, o te enseña el tatu del culo, tu eliges",
-            "Eso son nubes? Esta lloviendo fuera,ahora te toca mojarte por dentro. Pidele un chupito a Will",
-            "Cuantos chupitos le entran en la boca a matilla? Experimento empirico",
-            "Es mas barato un chupito que una hora de consulta con psicosilvia, tu verás"
-            "Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, pagale un chupito a Sergio. (aunque con lo que gana se lo puede pagar el)"
-            "Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no se si habrá llegado todavia)"
-            "Esta cerveza es mas artesana que musart, aprovecha y bebe"
-            "Elde está triste porque esto no parece una rave, invitale a un chupito"
-            "A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente"
-            "Alvarolo esta muy tranquilin, tomate una cerveza con el- pero no le enfades o sacará el dedo inquisidor"
-            "Busca a lucitec, o te hace un baile, o te invita a un chupito"
-            "Enhorabuena! Busca a Patri y pidele la caña que te debe! 
-            "Cuidado con Laura que es como un gremlim, si le das de beber despues de las 12 se transforma. Aprovecha e invitala a algo antes de esa hora"
-            "Localiza a cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL"
-            "Si encuentras a lolo, que te pague lo que quieras que va a tener mas trabajos que un Indio"
-            "Eso es una abutarda? Preguntale a Álvaro, si la respuesta es SI, te toca chupito. Si es que no, también"
-            "Si Mario tiene cara seria, le toca pagarte lo que le pidas"
-            "Noemi ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos que le invites a un chupito)"
-            "Bebete una caña con orki antes de que te empiece a hablar de Quimica!!!"
-            "Julia, vienes desentrenada- terapia de choque!- busca alguien que te pague un shot!"
-            "Eso es un tigre o es un gatito? Preguntale a Silvet y de la que vas, que te pague un chupito anda"
-            "Sarandonga, nos vamos a beber- pagas o pagan- pero si estás cerca de Sara te toca beber algo"
-            "Si te encuentras a menos de 1 metro de un Alvaro, bebes2
-            "Si ves a Yolanda con el vaso vacío, pidele uno, si esta lleno pues vete pidiendole para que no tenga que esperar"
-            "Si conoces a David, bebes. Si no le conoces, vete y presentate. Y después, bebes."
-            "Te duele la cabeza? Preguntale a Mer que hace neuro, si no te da solución, pues te tocara seguir bebiendo. De la que vas pagale un chupito por las molestias de la consulta"
-            "Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, HIDRATALE!"
-            " La Bruja está en el Moloko, si estás a menos de un metro de Isa, bebeis un chupito los dos!"
-            "Miriam lleva demasiadas Coca-colas, pagale un chupito y que sus riñones respiren un rato anda. Tomate uno con ella de la que vas"
-            "Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavia, pues te tomas un chupito a su salud. Y si ya llegó, pues que te pague uno!"
-
+            "Felicidades, has escaneado un papel del suelo. Tu nivel de curiosidad es peligroso.",
+            "Error 404: El universo no ha encontrado una frase ingeniosa para ti hoy.",
+            "No dejes para mañana lo que puedas hacer... pasado mañana.",
+            "Sonríe, te están grabando (es broma, o tal vez no).",
+            "La paciencia es una virtud, pero tú has escaneado esto buscando un chiste rápido.",
+            "Hoy es un gran día para dejar el móvil cinco minutos. Pero termina de leer esto primero.",
+            "Si lees esto, pídele una caña a Samu.",
+            "¡Enhorabuena! Te toca tomar un chupito, pídele a Toni que te invite.",
+            "Compadre te paga un chupito, o te enseña el tatu del culo, tú eliges.",
+            "¿Eso son nubes? Está lloviendo fuera, ahora te toca mojarte por dentro. Pídele un chupito a Will.",
+            "¿Cuántos chupitos le entran en la boca a Matilla? Experimento empírico.",
+            "Es más barato un chupito que una hora de consulta con Psicosilvia, tú verás.",
+            "¿Tenemos un letrado en la sala? Si lo encuentras te toca emborracharle, págale un chupito a Sergio. (Aunque con lo que gana se lo puede pagar él).",
+            "Si lees esto, te toca beberte la cerveza de trago, a la salud de Pelli (que no sé si habrá llegado todavía).",
+            "Esta cerveza es más artesana que Musart, aprovecha y bebe.",
+            "Elde está triste porque esto no parece una rave, invítale a un chupito.",
+            "A falta de prieto picudo, bueno es el Calimotxo. Rubén te paga el siguiente.",
+            "Alvarolo está muy tranquilín, tómate una cerveza con él - pero no le enfades o sacará el dedo inquisidor.",
+            "Busca a Lucitec, o te hace un baile, o te invita a un chupito.",
+            "¡Enhorabuena! ¡Busca a Patri y pídele la caña que te debe!", 
+            "Cuidado con Laura que es como un gremlin, si le das de beber después de las 12 se transforma. Aprovecha e invítala a algo antes de esa hora.",
+            "Localiza a Cristina, baila un perreo con ella, y dile que te invite a un chupito, paga la junta de CyL.",
+            "Si encuentras a Lolo, que te pague lo que quieras que va a tener más trabajos que un indio.",
+            "¿Eso es una avutarda? Pregúntale a Álvaro, si la respuesta es SÍ, te toca chupito. Si es que no, también.",
+            "Si Mario tiene cara seria, le toca pagarte lo que le pidas.",
+            "Noemí ha venido desde muy lejos (Palencia) para esta fiesta, que no le falte de nada (vamos, que le invites a un chupito).",
+            "¡¡¡Bébete una caña con Orki antes de que te empiece a hablar de Química!!!",
+            "Julia, vienes desentrenada - ¡terapia de choque! - ¡busca a alguien que te pague un shot!",
+            "¿Eso es un tigre o es un gatito? Pregúntale a Silvet y, de la que vas, que te pague un chupito anda.",
+            "Sarandonga, nos vamos a beber - pagas o pagan - pero si estás cerca de Sara te toca beber algo.",
+            "Si te encuentras a menos de 1 metro de un Álvaro, bebes.",
+            "Si ves a Yolanda con el vaso vacío, pídele uno. Si está lleno, pues vete pidiéndole para que no tenga que esperar.",
+            "Si conoces a David, bebes. Si no le conoces, vete y preséntate. Y después, bebes.",
+            "¿Te duele la cabeza? Pregúntale a Mer que hace neuro. Si no te da solución, pues te tocará seguir bebiendo. De la que vas págale un chupito por las molestias de la consulta.",
+            "Si Andrés tiene el vaso medio vacío, por favor no lo permitas. Ha estado corriendo toda la tarde y está muy deshidratado, ¡HIDRÁTALE!",
+            "La Bruja está en el Moloko, ¡si estás a menos de un metro de Isa, bebéis un chupito los dos!",
+            "Miriam lleva demasiadas Coca-Colas, págale un chupito y que sus riñones respiren un rato anda. Tómate uno con ella de la que vas.",
+            "Si Andrés maquinista (lo de maquinista porque está como un tren) no ha llegado todavía, pues te tomas un chupito a su salud. Y si ya llegó, ¡pues que te pague uno!"
         ];
 
-        // Función que elige una frase al azar de la lista
         function mostrarFraseAleatoria() {
             const indiceAleatorio = Math.floor(Math.random() * frases.length);
             document.getElementById("frase-destino").innerText = frases[indiceAleatorio];
         }
 
-        // Se ejecuta automáticamente al abrir la página
         window.onload = mostrarFraseAleatoria;
     </script>
 
